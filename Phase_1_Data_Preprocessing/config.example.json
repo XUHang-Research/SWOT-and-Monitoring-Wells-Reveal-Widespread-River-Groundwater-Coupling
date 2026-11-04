@@ -1,0 +1,18 @@
+{
+  "inputs": {
+    "groundwater_raw": "../../external_inputs/groundwater/dataset_all_2023.txt",
+    "well_metadata": "../../external_inputs/groundwater/metadata2023.xlsx",
+    "dem_vrt": "../../external_inputs/dem/Global_Copernicus_30m.vrt",
+    "sword_nodes": "../../external_inputs/sword/SWORD_nodes.shp",
+    "swot_merged_root": "../../external_inputs/swot/RiverSP_D_FlatGeobuf",
+    "precipitation_hourly": "../../external_inputs/climate/PRE",
+    "evapotranspiration_hourly": "../../external_inputs/climate/ET"
+  },
+  "workspace": "../../phase1_work",
+  "workers": {
+    "matching": 80,
+    "reach": 16,
+    "climate_conversion": 4,
+    "climate_join": 8
+  }
+}
