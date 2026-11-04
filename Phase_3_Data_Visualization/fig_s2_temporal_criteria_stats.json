@@ -1,0 +1,330 @@
+{
+  "figure": "fig_s2_temporal_criteria",
+  "purpose": "Eligibility sensitivity for the six-parameter intercept + trend + annual + semiannual harmonic model; accepted records are never truncated.",
+  "inputs": {
+    "primary_monthly": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/6matched_results_monthly.txt",
+    "primary_daily": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/5matched_results_daily.txt",
+    "archived_pair_metrics": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/distance1000_data/08_global_coupling_metrics.parquet",
+    "archived_event_metrics_for_main_gate_reproduction": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/distance1000_data/08_event_metrics_all_sites.parquet",
+    "strict_distance_rematch_cache": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/shared_cache/distance_robustness_monthly_strict.parquet"
+  },
+  "model": {
+    "n_parameters": 6,
+    "terms": [
+      "intercept",
+      "linear trend",
+      "annual cosine",
+      "annual sine",
+      "semiannual cosine",
+      "semiannual sine"
+    ],
+    "all_available_observations_used_after_screen": true,
+    "full_rank_required": true,
+    "maximum_condition_number": 10000.0,
+    "daily_event_r_minimum_paired_days": 24,
+    "daily_event_r_definition": "Pearson correlation of river and groundwater residuals after separate six-parameter harmonic fits",
+    "variable_specific_populations": "Daily residual correlation r is selected and reach-aggregated solely under the daily support gate. A/tau and TF use the corresponding monthly support gate; the populations are not intersected."
+  },
+  "bootstrap": {
+    "unit": "Reach",
+    "draws": 10000,
+    "interval": "percentile 95%"
+  },
+  "primary_1km": {
+    "loose": {
+      "criterion": {
+        "minimum_paired_months": 12,
+        "minimum_span_years": 1.0,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0
+      },
+      "daily_event_r_criterion": {
+        "minimum_paired_days": 24,
+        "minimum_span_years": 1.0,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0,
+        "all_available_pairwise_finite_days_used": true,
+        "independent_of_monthly_harmonic_eligibility": true
+      },
+      "n_site": 2679,
+      "n_reach": 1005,
+      "n_country_or_network": 12,
+      "panel_b_population": "daily_event_r",
+      "panel_d_population": "monthly_harmonic",
+      "monthly_harmonic_population": {
+        "n_site": 2679,
+        "n_reach": 1005,
+        "n_country_or_network": 12
+      },
+      "daily_event_r_population": {
+        "n_site": 1622,
+        "n_reach": 734,
+        "n_country_or_network": 11,
+        "monthly_eligibility_intersection_applied": false
+      },
+      "numerical_failures_after_time_screen": 0,
+      "event_r_fraction_ge_0p3": [
+        0.42915531335149865,
+        0.4659400544959128,
+        0.502724795640327
+      ],
+      "amplified_or_leading_fraction": [
+        0.5174129353233831,
+        0.5482587064676617,
+        0.5781094527363184
+      ],
+      "lowpass_fraction_TF2_lt_TF1": [
+        0.6676616915422886,
+        0.6965174129353234,
+        0.7243781094527363
+      ],
+      "denominators": {
+        "event_r_sites": 1622,
+        "event_r_reaches": 734,
+        "event_r_countries_or_networks": 11,
+        "A_tau_sites": 2679,
+        "A_tau_reaches": 1005,
+        "A_tau_countries_or_networks": 12,
+        "two_band_TF_sites": 2679,
+        "two_band_TF_reaches": 1005,
+        "two_band_TF_countries_or_networks": 12
+      }
+    },
+    "main": {
+      "criterion": {
+        "minimum_paired_months": 18,
+        "minimum_span_years": 1.5,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0
+      },
+      "daily_event_r_criterion": {
+        "minimum_paired_days": 24,
+        "minimum_span_years": 1.5,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0,
+        "all_available_pairwise_finite_days_used": true,
+        "independent_of_monthly_harmonic_eligibility": true
+      },
+      "n_site": 1718,
+      "n_reach": 507,
+      "n_country_or_network": 10,
+      "panel_b_population": "daily_event_r",
+      "panel_d_population": "monthly_harmonic",
+      "monthly_harmonic_population": {
+        "n_site": 1718,
+        "n_reach": 507,
+        "n_country_or_network": 10
+      },
+      "daily_event_r_population": {
+        "n_site": 1268,
+        "n_reach": 512,
+        "n_country_or_network": 10,
+        "monthly_eligibility_intersection_applied": false
+      },
+      "numerical_failures_after_time_screen": 0,
+      "event_r_fraction_ge_0p3": [
+        0.427734375,
+        0.470703125,
+        0.513671875
+      ],
+      "amplified_or_leading_fraction": [
+        0.4358974358974359,
+        0.47928994082840237,
+        0.5226824457593688
+      ],
+      "lowpass_fraction_TF2_lt_TF1": [
+        0.6765285996055227,
+        0.7159763313609467,
+        0.7554240631163708
+      ],
+      "denominators": {
+        "event_r_sites": 1268,
+        "event_r_reaches": 512,
+        "event_r_countries_or_networks": 10,
+        "A_tau_sites": 1718,
+        "A_tau_reaches": 507,
+        "A_tau_countries_or_networks": 10,
+        "two_band_TF_sites": 1718,
+        "two_band_TF_reaches": 507,
+        "two_band_TF_countries_or_networks": 10
+      }
+    },
+    "strict": {
+      "criterion": {
+        "minimum_paired_months": 24,
+        "minimum_span_years": 2.0,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0
+      },
+      "daily_event_r_criterion": {
+        "minimum_paired_days": 24,
+        "minimum_span_years": 2.0,
+        "full_rank_required": true,
+        "maximum_condition_number": 10000.0,
+        "all_available_pairwise_finite_days_used": true,
+        "independent_of_monthly_harmonic_eligibility": true
+      },
+      "n_site": 850,
+      "n_reach": 291,
+      "n_country_or_network": 6,
+      "panel_b_population": "daily_event_r",
+      "panel_d_population": "monthly_harmonic",
+      "monthly_harmonic_population": {
+        "n_site": 850,
+        "n_reach": 291,
+        "n_country_or_network": 6
+      },
+      "daily_event_r_population": {
+        "n_site": 963,
+        "n_reach": 399,
+        "n_country_or_network": 10,
+        "monthly_eligibility_intersection_applied": false
+      },
+      "numerical_failures_after_time_screen": 0,
+      "event_r_fraction_ge_0p3": [
+        0.45614035087719296,
+        0.506265664160401,
+        0.5539473684210517
+      ],
+      "amplified_or_leading_fraction": [
+        0.4020618556701031,
+        0.46048109965635736,
+        0.5189003436426117
+      ],
+      "lowpass_fraction_TF2_lt_TF1": [
+        0.6494845360824743,
+        0.7010309278350515,
+        0.7525773195876289
+      ],
+      "denominators": {
+        "event_r_sites": 963,
+        "event_r_reaches": 399,
+        "event_r_countries_or_networks": 10,
+        "A_tau_sites": 850,
+        "A_tau_reaches": 291,
+        "A_tau_countries_or_networks": 6,
+        "two_band_TF_sites": 850,
+        "two_band_TF_reaches": 291,
+        "two_band_TF_countries_or_networks": 6
+      }
+    }
+  },
+  "numerical_diagnostics": {
+    "all_screened_sites": 4113,
+    "full_rank_sites": 3327,
+    "condition_number_le_1e4_sites": 3326,
+    "condition_number_quantiles": {
+      "0.5": 2.6181549190079068,
+      "0.9": 8.257122143637126,
+      "0.95": 34.499473709590404,
+      "0.99": 233.82155119223194
+    }
+  },
+  "daily_event_diagnostics": {
+    "input_rows": 2222880,
+    "rows_within_1km": 292863,
+    "pairwise_finite_rows_within_1km": 102206,
+    "screened_sites": 3515,
+    "full_rank_sites": 2723,
+    "numerically_valid_event_fits": 2696
+  },
+  "archived_reproduction": {
+    "monthly_A_tau": {
+      "overlap_sites": 1718,
+      "archive_sites": 1718,
+      "recomputed_main_sites": 1718,
+      "archive_reaches": 507,
+      "recomputed_main_reaches": 507,
+      "archive_duplicate_site_rows": 0,
+      "missing_from_recompute": 0,
+      "new_in_recompute": 0,
+      "reach_id_mismatch_sites": 0,
+      "maximum_absolute_A_difference": 0.0,
+      "maximum_circular_tau_difference_days": 0.0,
+      "tolerance": 1e-06,
+      "passed": true
+    },
+    "daily_event_r_main_gate": {
+      "overlap_sites": 1268,
+      "missing_from_recompute": 0,
+      "new_in_recompute": 0,
+      "n_obs_mismatch_sites": 0,
+      "archive_duplicate_site_rows": 0,
+      "maximum_absolute_event_r_difference": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    }
+  },
+  "distance_by_temporal_criterion": {
+    "500": {
+      "loose": {
+        "n_site": 1412,
+        "n_reach": 545,
+        "amplified_or_leading_fraction": 0.5174311926605505
+      },
+      "main": {
+        "n_site": 872,
+        "n_reach": 284,
+        "amplified_or_leading_fraction": 0.43661971830985913
+      },
+      "strict": {
+        "n_site": 370,
+        "n_reach": 160,
+        "amplified_or_leading_fraction": 0.45625
+      }
+    },
+    "1000": {
+      "loose": {
+        "n_site": 2679,
+        "n_reach": 1005,
+        "amplified_or_leading_fraction": 0.5482587064676617
+      },
+      "main": {
+        "n_site": 1718,
+        "n_reach": 507,
+        "amplified_or_leading_fraction": 0.47928994082840237
+      },
+      "strict": {
+        "n_site": 850,
+        "n_reach": 291,
+        "amplified_or_leading_fraction": 0.46048109965635736
+      }
+    },
+    "2000": {
+      "loose": {
+        "n_site": 4868,
+        "n_reach": 1566,
+        "amplified_or_leading_fraction": 0.570242656449553
+      },
+      "main": {
+        "n_site": 3128,
+        "n_reach": 715,
+        "amplified_or_leading_fraction": 0.48951048951048953
+      },
+      "strict": {
+        "n_site": 1655,
+        "n_reach": 398,
+        "amplified_or_leading_fraction": 0.4396984924623116
+      }
+    },
+    "5000": {
+      "loose": {
+        "n_site": 9358,
+        "n_reach": 2403,
+        "amplified_or_leading_fraction": 0.6004993757802747
+      },
+      "main": {
+        "n_site": 6064,
+        "n_reach": 1041,
+        "amplified_or_leading_fraction": 0.5465898174831892
+      },
+      "strict": {
+        "n_site": 3474,
+        "n_reach": 566,
+        "amplified_or_leading_fraction": 0.5017667844522968
+      }
+    }
+  },
+  "joint_matrix_colormap": "matplotlib.cividis",
+  "joint_matrix_consumer": "fig_s8_at_sensitivity panel b"
+}
