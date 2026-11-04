@@ -1,0 +1,828 @@
+provenance:
+  scope: global SWOT x in-situ well, 2023-2025, datum-free relative metrics, <=1km
+    by distance_prior_bank_m, reach-level
+  dev_countries:
+  - China
+  - Germany
+  denominator_note: all headline fractions are computed at Reach level. A/tau uses
+    median A and equal-weight circular-mean tau across monthly-eligible sites within
+    1 km; standalone event-r uses the complete independently daily-eligible population,
+    as does the same-date raw/seasonal-harmonic/residual comparison. Only direct monthly-versus-daily
+    paired tests use a frozen monthly-daily intersection. CIs are Reach-level bootstraps
+    (n=10000).
+  distance_column: distance_prior_bank_m
+  reach_phase_aggregation: equal-weight circular mean of site phase differences
+  harmonic_eligibility:
+    minimum_pairwise_finite_observations: 18
+    minimum_elapsed_span_years: 1.5
+    model_parameters: 6
+    full_column_rank_required: true
+    maximum_condition_number: 10000.0
+    accepted_record_policy: use all pairwise-finite observations; do not truncate
+  generated_by: 06_main_numbers.py
+dataset:
+  n_pairs_with_metrics: 1718
+  n_reaches_with_metrics: 507
+  n_independent_daily_event_sites: 1268
+  n_independent_daily_event_reaches: 512
+  median_match_distance_km: 0.7482763128073877
+  n_reaches_wse_residual_variability: 1421
+  wse_residual_variability_p5_p95_fold: 22.5864314420164
+  analysis_window: 2023–2025 (SWOT science orbit, ~3 yr)
+diffusive_falsification:
+  thresholds:
+    amplified_A_gt: 1.2
+    lead_tau_le_days: 0
+  denominator: reach-aggregated pairs within 1 km with finite A or tau
+  amplified_or_lead_frac:
+    ALL:
+      value: 0.47928994082840237
+      ci95:
+      - 0.4358974358974359
+      - 0.47928994082840237
+      - 0.5226824457593688
+      n_reach: 507
+    DEV:
+      value: 0.4409722222222222
+      ci95:
+      - 0.3854166666666667
+      - 0.4409722222222222
+      - 0.5
+      n_reach: 288
+    HOLDOUT:
+      value: 0.5296803652968036
+      ci95:
+      - 0.4656392694063928
+      - 0.5296803652968036
+      - 0.593607305936073
+      n_reach: 219
+  lead_frac_tau_le_0:
+    ALL:
+      value: 0.3057199211045365
+      ci95:
+      - 0.26627218934911245
+      - 0.3057199211045365
+      - 0.34714003944773175
+    HOLDOUT:
+      value: 0.3242009132420091
+      ci95:
+      - 0.2648401826484018
+      - 0.3242009132420091
+      - 0.3881278538812785
+  threshold_robustness:
+    ALL:
+      A>1.1 | tau<-15: 0.4812623274161736
+      A>1.1 | tau<=0: 0.5207100591715976
+      A>1.1 | tau<+15: 0.5956607495069034
+      A>1.2 | tau<-15: 0.43984220907297833
+      A>1.2 | tau<=0: 0.47928994082840237
+      A>1.2 | tau<+15: 0.5700197238658777
+      A>1.5 | tau<-15: 0.39250493096646943
+      A>1.5 | tau<=0: 0.4418145956607495
+      A>1.5 | tau<+15: 0.5364891518737672
+    HOLDOUT:
+      A>1.1 | tau<-15: 0.5251141552511416
+      A>1.1 | tau<=0: 0.5570776255707762
+      A>1.1 | tau<+15: 0.639269406392694
+      A>1.2 | tau<-15: 0.4977168949771689
+      A>1.2 | tau<=0: 0.5296803652968036
+      A>1.2 | tau<+15: 0.6210045662100456
+      A>1.5 | tau<-15: 0.4474885844748858
+      A>1.5 | tau<=0: 0.4931506849315068
+      A>1.5 | tau<+15: 0.5844748858447488
+  distance_robustness:
+    <= 0.5 km:
+      n_reach_all: 284
+      n_reach_holdout: 109
+      amplified_or_lead_all: 0.43661971830985913
+      amplified_or_lead_holdout: 0.45871559633027525
+    <= 1 km:
+      n_reach_all: 507
+      n_reach_holdout: 219
+      amplified_or_lead_all: 0.47928994082840237
+      amplified_or_lead_holdout: 0.5296803652968036
+    <= 2 km:
+      n_reach_all: 715
+      n_reach_holdout: 334
+      amplified_or_lead_all: 0.48951048951048953
+      amplified_or_lead_holdout: 0.5598802395209581
+    <= 5 km:
+      n_reach_all: 1041
+      n_reach_holdout: 578
+      amplified_or_lead_all: 0.5465898174831892
+      amplified_or_lead_holdout: 0.5865051903114187
+  synthetic_sign_test:
+    A_lag30: 0.4999999999999997
+    tau_lag30_days: 29.999999999999964
+    tau_lead20_days: -20.00000000000001
+    passed: true
+  single_reach_at_uncertainty:
+    method: HC2-adjusted paired calendar-block wild bootstrap at fixed dates; sites
+      resampled within Reach; shared calendar weights and synchronized replicates
+      across all sites/Nodes in each Reach; equal-weight circular-mean phase
+    residual_block_months: 3
+    residual_block_unit: calendar_month
+    temporal_dependence_unit: Reach
+    replicate_alignment: same replicate across sites, including repeated sampled sites
+    multiplier: Rademacher +/-1, shared by all river/GW site series in each Reach/calendar
+      block
+    block_origin: uniform random monthly offset per replicate; no endpoint wrapping
+    missing_months: original observation dates and missingness retained; no interpolation
+    thresholds:
+      A: 1.2
+      tau_days: 0.0
+      classification_probability: 0.95
+    ALL:
+      n_reach: 507
+      point_amplified_or_lead_fraction: 0.47928994082840237
+      robust_violation_fraction_p_ge_0p95: 0.16962524654832348
+      robust_compatible_fraction_p_le_0p05: 0.1203155818540434
+      uncertain_classification_fraction: 0.7100591715976331
+      uncertainty_propagated_amplified_or_lead_fraction:
+      - 0.46745562130177515
+      - 0.5111940828402366
+      - 0.5542406311637081
+      uncertainty_propagated_lead_fraction:
+      - 0.29191321499013806
+      - 0.3321623274161735
+      - 0.3747534516765286
+      median_tau_ci_width_days: 147.7041180402664
+      median_A_ci_fold: 8.104574065421765
+      n_phase_concentration_below_0p5: 26
+    DEV:
+      n_reach: 288
+      point_amplified_or_lead_fraction: 0.4409722222222222
+      robust_violation_fraction_p_ge_0p95: 0.11805555555555555
+      robust_compatible_fraction_p_le_0p05: 0.125
+      uncertain_classification_fraction: 0.7569444444444444
+      uncertainty_propagated_amplified_or_lead_fraction:
+      - 0.4201388888888889
+      - 0.4772527777777778
+      - 0.5347222222222222
+      uncertainty_propagated_lead_fraction:
+      - 0.2708333333333333
+      - 0.3230583333333333
+      - 0.3784722222222222
+      median_tau_ci_width_days: 171.3190125873258
+      median_A_ci_fold: 9.172256621365763
+      n_phase_concentration_below_0p5: 18
+    HOLDOUT:
+      n_reach: 219
+      point_amplified_or_lead_fraction: 0.5296803652968036
+      robust_violation_fraction_p_ge_0p95: 0.2374429223744292
+      robust_compatible_fraction_p_le_0p05: 0.1141552511415525
+      uncertain_classification_fraction: 0.6484018264840182
+      uncertainty_propagated_amplified_or_lead_fraction:
+      - 0.4885844748858447
+      - 0.5558292237442923
+      - 0.6210045662100456
+      uncertainty_propagated_lead_fraction:
+      - 0.2831050228310502
+      - 0.34413470319634704
+      - 0.4063926940639269
+      median_tau_ci_width_days: 123.32538137560826
+      median_A_ci_fold: 7.183480072586733
+      n_phase_concentration_below_0p5: 8
+correlation:
+  denominator: within 1 km; standalone event-r uses every independently daily-eligible
+    site and Reach. The three same-date daily correlations use that same complete
+    daily population; only direct monthly-versus-daily comparisons use an explicitly
+    frozen intersection
+  seasonal_r_median:
+    denominator: all monthly-harmonic-eligible site-Reach pairs with finite monthly
+      seasonal_r, median-aggregated by Reach; daily event-r eligibility is not imposed
+    ALL:
+      value: 0.42835878925482423
+      ci95:
+      - 0.3584364999112657
+      - 0.42835878925482423
+      - 0.47395546512370235
+      n_site_pairs: 1718
+      n_reach: 507
+    HOLDOUT:
+      value: 0.3745747004505072
+      ci95:
+      - 0.3018512529387172
+      - 0.3745747004505072
+      - 0.4397340303898789
+      n_site_pairs: 336
+      n_reach: 219
+  event_r_median:
+    denominator: complete independent daily event-r population; median across eligible
+      sites within Reach
+    ALL:
+      value: 0.2694510293534349
+      ci95: &id001
+      - 0.23025382543249578
+      - 0.2694510293534349
+      - 0.31597752276899915
+      n_site_pairs: 1268
+      n_reach: 512
+    DEV:
+      value: 0.2955465355344653
+      ci95: &id003
+      - 0.24753090071449385
+      - 0.2955465355344653
+      - 0.40448067111667474
+      n_site_pairs: 861
+      n_reach: 249
+    HOLDOUT:
+      value: 0.2281717632768
+      ci95: &id005
+      - 0.17019443275577428
+      - 0.2281717632768
+      - 0.30349708999548003
+      n_site_pairs: 407
+      n_reach: 263
+  event_r_frac_ge_0p3:
+    denominator: complete independent daily event-r population; threshold applied
+      after site values are median-aggregated within Reach
+    ALL:
+      value: 0.470703125
+      ci95: &id002
+      - 0.427734375
+      - 0.470703125
+      - 0.513671875
+      n_site_pairs: 1268
+      n_reach: 512
+    DEV:
+      value: 0.4979919678714859
+      ci95: &id004
+      - 0.43775100401606426
+      - 0.4979919678714859
+      - 0.5582329317269076
+      n_site_pairs: 861
+      n_reach: 249
+    HOLDOUT:
+      value: 0.4448669201520912
+      ci95: &id006
+      - 0.3840304182509506
+      - 0.4448669201520912
+      - 0.5057034220532319
+      n_site_pairs: 407
+      n_reach: 263
+  same_sample_daily_comparison:
+    denominator:
+      source_table: 08_event_metrics_all_sites.parquet
+      monthly_harmonic_eligibility_required: false
+      site_filter: complete independently daily-eligible site_no x reach_id rows with
+        finite raw_r_same_sample, seasonal_harmonic_r_same_sample, and event_r; no
+        monthly harmonic eligibility filter is imposed
+      observation_dates: all three correlations use the identical pairwise-finite
+        daily river-well observations selected in step 2
+      seasonal_harmonic_definition: Pearson correlation between fitted annual+semiannual
+        reconstructions; intercept and linear trend excluded
+      reach_aggregation: median across the fixed site-pair intersection within each
+        Reach
+      bootstrap_unit: Reach; synchronized paired resampling across metrics
+      bootstrap_replicates: 10000
+      bootstrap_seed_base: 20260808
+      bootstrap_seed_by_split:
+        ALL: 20260808
+        DEV: 20260810
+        HOLDOUT: 20260809
+      interval_format: '[2.5th percentile, point estimate, 97.5th percentile]'
+      paired_difference_definition: median_paired_difference is median_i(left_i -
+        right_i); difference_of_medians is median_i(left_i) - median_i(right_i). They
+        are not algebraically interchangeable and neither is an additive fraction
+        of correlation explained by seasonality.
+    interpretation: 'The three correlations use identical daily observations from
+      the complete independently daily-eligible population; monthly harmonic eligibility
+      is not imposed. Correlation is not additively decomposable: the paired differences
+      quantify contrasts between metrics, not a fraction explained by seasonality.'
+    ALL:
+      n_site_pairs: 1268
+      n_reach: 512
+      bootstrap_seed: 20260808
+      metric_medians:
+        raw_r_same_sample:
+          value: 0.34906669712626404
+          bootstrap_ci95:
+          - 0.2955582555205804
+          - 0.40402076363097983
+        seasonal_harmonic_r_same_sample:
+          value: 0.6265822135993709
+          bootstrap_ci95:
+          - 0.5638083176877584
+          - 0.6967688413123652
+        event_r:
+          value: 0.2694510293534349
+          bootstrap_ci95:
+          - 0.23025382543249578
+          - 0.31597752276899915
+      event_r_fraction_ge_0p3:
+        value: 0.470703125
+        bootstrap_ci95:
+        - 0.427734375
+        - 0.513671875
+      paired_comparisons:
+        seasonal_harmonic_minus_event:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.13675436585066153
+            bootstrap_ci95:
+            - 0.09124241878634402
+            - 0.1684770233715901
+          difference_of_medians:
+            value: 0.35713118424593604
+            bootstrap_ci95:
+            - 0.30018152289998584
+            - 0.41855441249733444
+          fraction_reach_paired_difference_positive:
+            value: 0.66015625
+            bootstrap_ci95:
+            - 0.619140625
+            - 0.701171875
+        raw_minus_event:
+          left_metric: raw_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.029847155531128544
+            bootstrap_ci95:
+            - 0.018834449373757917
+            - 0.040103893426363224
+          difference_of_medians:
+            value: 0.07961566777282914
+            bootstrap_ci95:
+            - 0.0393006124430366
+            - 0.12108271292082685
+          fraction_reach_paired_difference_positive:
+            value: 0.591796875
+            bootstrap_ci95:
+            - 0.548828125
+            - 0.634765625
+        seasonal_harmonic_minus_raw:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: raw_r_same_sample
+          median_paired_difference:
+            value: 0.07720187467878792
+            bootstrap_ci95:
+            - 0.05648475405410408
+            - 0.09876493526831795
+          difference_of_medians:
+            value: 0.2775155164731069
+            bootstrap_ci95:
+            - 0.22626579952974615
+            - 0.3272247085942653
+          fraction_reach_paired_difference_positive:
+            value: 0.6640625
+            bootstrap_ci95:
+            - 0.623046875
+            - 0.705078125
+    DEV:
+      n_site_pairs: 861
+      n_reach: 249
+      bootstrap_seed: 20260810
+      metric_medians:
+        raw_r_same_sample:
+          value: 0.3673697890110673
+          bootstrap_ci95:
+          - 0.28245700304161414
+          - 0.47693804384929805
+        seasonal_harmonic_r_same_sample:
+          value: 0.563675689726301
+          bootstrap_ci95:
+          - 0.476588731693018
+          - 0.6324234875716649
+        event_r:
+          value: 0.2955465355344653
+          bootstrap_ci95:
+          - 0.24753090071449385
+          - 0.40448067111667474
+      event_r_fraction_ge_0p3:
+        value: 0.4979919678714859
+        bootstrap_ci95:
+        - 0.43775100401606426
+        - 0.5582329317269076
+      paired_comparisons:
+        seasonal_harmonic_minus_event:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.03151310462730622
+            bootstrap_ci95:
+            - -0.0014176481932256513
+            - 0.08034507508407518
+          difference_of_medians:
+            value: 0.2681291541918357
+            bootstrap_ci95:
+            - 0.1704801542307166
+            - 0.3387830725113888
+          fraction_reach_paired_difference_positive:
+            value: 0.5582329317269076
+            bootstrap_ci95:
+            - 0.4979919678714859
+            - 0.6184738955823293
+        raw_minus_event:
+          left_metric: raw_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.008269817697307058
+            bootstrap_ci95:
+            - -0.008975323291285142
+            - 0.02401518413919161
+          difference_of_medians:
+            value: 0.07182325347660201
+            bootstrap_ci95:
+            - -0.006567614752841566
+            - 0.13279691822407405
+          fraction_reach_paired_difference_positive:
+            value: 0.5261044176706827
+            bootstrap_ci95:
+            - 0.46184738955823296
+            - 0.5863453815261044
+        seasonal_harmonic_minus_raw:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: raw_r_same_sample
+          median_paired_difference:
+            value: 0.024203984779115006
+            bootstrap_ci95:
+            - -0.0006679998117198327
+            - 0.04150013857745771
+          difference_of_medians:
+            value: 0.19630590071523368
+            bootstrap_ci95:
+            - 0.11685810889804155
+            - 0.27790920409189035
+          fraction_reach_paired_difference_positive:
+            value: 0.5582329317269076
+            bootstrap_ci95:
+            - 0.4979919678714859
+            - 0.6184738955823293
+    HOLDOUT:
+      n_site_pairs: 407
+      n_reach: 263
+      bootstrap_seed: 20260809
+      metric_medians:
+        raw_r_same_sample:
+          value: 0.3472909519457856
+          bootstrap_ci95:
+          - 0.2724682836026168
+          - 0.4121463801005921
+        seasonal_harmonic_r_same_sample:
+          value: 0.7129740885741318
+          bootstrap_ci95:
+          - 0.6036374058622047
+          - 0.756432566401472
+        event_r:
+          value: 0.2281717632768
+          bootstrap_ci95:
+          - 0.17019443275577428
+          - 0.30349708999548003
+      event_r_fraction_ge_0p3:
+        value: 0.4448669201520912
+        bootstrap_ci95:
+        - 0.3840304182509506
+        - 0.5057034220532319
+      paired_comparisons:
+        seasonal_harmonic_minus_event:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.22493716437267153
+            bootstrap_ci95:
+            - 0.17445319243867333
+            - 0.28787502423067923
+          difference_of_medians:
+            value: 0.4848023252973318
+            bootstrap_ci95:
+            - 0.3766171430492749
+            - 0.5403465074048506
+          fraction_reach_paired_difference_positive:
+            value: 0.7566539923954373
+            bootstrap_ci95:
+            - 0.7034220532319392
+            - 0.8060836501901141
+        raw_minus_event:
+          left_metric: raw_r_same_sample
+          right_metric: event_r
+          median_paired_difference:
+            value: 0.05760802744650196
+            bootstrap_ci95:
+            - 0.0340808541022999
+            - 0.09093728474158458
+          difference_of_medians:
+            value: 0.11911918866898558
+            bootstrap_ci95:
+            - 0.053057118076329034
+            - 0.1644723040750723
+          fraction_reach_paired_difference_positive:
+            value: 0.6539923954372624
+            bootstrap_ci95:
+            - 0.596958174904943
+            - 0.7110266159695817
+        seasonal_harmonic_minus_raw:
+          left_metric: seasonal_harmonic_r_same_sample
+          right_metric: raw_r_same_sample
+          median_paired_difference:
+            value: 0.15173535443170097
+            bootstrap_ci95:
+            - 0.10689090069356666
+            - 0.18331053413014978
+          difference_of_medians:
+            value: 0.36568313662834623
+            bootstrap_ci95:
+            - 0.2867907635088174
+            - 0.42079794454522523
+          fraction_reach_paired_difference_positive:
+            value: 0.7642585551330798
+            bootstrap_ci95:
+            - 0.7110266159695817
+            - 0.8136882129277566
+  deseasonalization_method_robustness:
+  - method: monthly_climatology_removal
+    n_reach: 507
+    seasonal_r_median: 0.42835878925482423
+    deseason_r_median: 0.3811874466861565
+  - method: annual+semiannual_harmonic_residual
+    n_reach: 507
+    seasonal_r_median: 0.42835878925482423
+    deseason_r_median: 0.3627773892878651
+  - method: detrend+monthly_climatology
+    n_reach: 507
+    seasonal_r_median: 0.42835878925482423
+    deseason_r_median: 0.38889397263837455
+  event_permutation_null:
+    B: 10000
+    time_aware_null:
+      model: independent continuous-time AR(1)/OU marginal residual surrogates
+      surrogate_processing: same six-column harmonic residualization as observed event_r;
+        standardize after projection
+      refit_harmonics_for_each_surrogate: true
+      dates: exact pairwise-finite observed dates; no interpolation
+      autocorrelation: phi(delta_t)=exp(-delta_t/tau_c)
+      tau_estimation: profile likelihood over a 0.5-730.5 day logarithmic grid
+      cross_series_null: river and groundwater innovations simulated independently
+      n_site: 1268
+      river_tau_days_median: 4.09839478759867
+      groundwater_tau_days_median: 28.84373555784977
+      note: time-aware OU is the primary strict null; observation-order circular shift
+        is retained as a simpler sensitivity null
+    sample_definition:
+      source: /storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/distance1000_data/08_event_metrics_all_sites.parquet
+      unit: independent daily event-r site_no, aggregated to its frozen daily-population
+        reach_id
+      monthly_harmonic_eligibility_required: false
+      n_site: 1268
+      n_reach_all: 512
+      n_reach_dev: 249
+      n_reach_holdout: 263
+      split: frozen Reach-level split from 08_event_metrics_all_sites.parquet
+      max_abs_observed_event_r_difference: 0.0
+    ALL:
+      label: ALL
+      n_site: 1268
+      n_reach: 512
+      obs_event_r_median: 0.2694510293534349
+      obs_event_r_median_ci95: *id001
+      null_event_r_median: -0.0116004658824307
+      null_event_r_median_p95: -0.0013233326243883988
+      p_median: 9.999000099990002e-05
+      obs_frac_ge0p3: 0.470703125
+      obs_frac_ge0p3_ci95: *id002
+      null_frac_ge0p3: 0.029296875
+      p_frac: 9.999000099990002e-05
+      time_aware_null_event_r_median: 5.7190094299929315e-05
+      time_aware_null_event_r_median_p95: 0.012619192856913477
+      time_aware_p_median: 9.999000099990002e-05
+      time_aware_null_frac_ge0p3: 0.041015625
+      time_aware_null_frac_ge0p3_p95: 0.056640625
+      time_aware_p_frac: 9.999000099990002e-05
+      observed_bootstrap:
+        unit: Reach
+        n_replicates: 10000
+        seed: 20260808
+        interval: percentile 95% CI
+        interval_format: '[2.5th percentile, point estimate, 97.5th percentile]'
+    DEV:
+      label: DEV
+      n_site: 861
+      n_reach: 249
+      obs_event_r_median: 0.2955465355344653
+      obs_event_r_median_ci95: *id003
+      null_event_r_median: -0.014456696272534358
+      null_event_r_median_p95: -0.0007778387816233634
+      p_median: 9.999000099990002e-05
+      obs_frac_ge0p3: 0.4979919678714859
+      obs_frac_ge0p3_ci95: *id004
+      null_frac_ge0p3: 0.024096385542168676
+      p_frac: 9.999000099990002e-05
+      time_aware_null_event_r_median: 0.00017771931882370147
+      time_aware_null_event_r_median_p95: 0.01681721181724839
+      time_aware_p_median: 9.999000099990002e-05
+      time_aware_null_frac_ge0p3: 0.040160642570281124
+      time_aware_null_frac_ge0p3_p95: 0.060240963855421686
+      time_aware_p_frac: 9.999000099990002e-05
+      observed_bootstrap:
+        unit: Reach
+        n_replicates: 10000
+        seed: 20260810
+        interval: percentile 95% CI
+        interval_format: '[2.5th percentile, point estimate, 97.5th percentile]'
+    HOLDOUT:
+      label: HOLDOUT
+      n_site: 407
+      n_reach: 263
+      obs_event_r_median: 0.2281717632768
+      obs_event_r_median_ci95: *id005
+      null_event_r_median: -0.008302839474053116
+      null_event_r_median_p95: 0.007102506577557453
+      p_median: 9.999000099990002e-05
+      obs_frac_ge0p3: 0.4448669201520912
+      obs_frac_ge0p3_ci95: *id006
+      null_frac_ge0p3: 0.034220532319391636
+      p_frac: 9.999000099990002e-05
+      time_aware_null_event_r_median: -0.0002803151924392729
+      time_aware_null_event_r_median_p95: 0.019140950294918194
+      time_aware_p_median: 9.999000099990002e-05
+      time_aware_null_frac_ge0p3: 0.04182509505703422
+      time_aware_null_frac_ge0p3_p95: 0.06463878326996197
+      time_aware_p_frac: 9.999000099990002e-05
+      observed_bootstrap:
+        unit: Reach
+        n_replicates: 10000
+        seed: 20260809
+        interval: percentile 95% CI
+        interval_format: '[2.5th percentile, point estimate, 97.5th percentile]'
+  climate_associations:
+    aridity_definition:
+      metric: sum(precipitation_mm) / sum(abs(evapotranspiration_mm))
+      temporal_window: fixed 2023-01 through 2025-12 natural months
+      months_per_site: 36
+      computed_before_water_level_pairwise_screen: true
+      climate_month_completeness_required: true
+    analysis_unit: Reach
+    aggregation:
+      A_vs_aridity: monthly-harmonic-eligible 08_global_coupling_metrics population;
+        finite A and complete-window aridity, median-aggregated by Reach
+      event_r_vs_aridity: complete independent daily event-r population in 08_event_covariates_all_sites;
+        complete-window aridity, median-aggregated by Reach
+    A_vs_aridity:
+      rho: -0.07553453331588461
+      p_value: 0.08931630394204132
+      n_reach: 507
+      n_site_pairs: 1718
+    event_r_vs_aridity:
+      rho: 0.022449172502023513
+      p_value: 0.6123027985140943
+      n_reach: 512
+      n_site_pairs: 1268
+regional_exploratory:
+  sample_definitions:
+    regional_event_r: complete independent daily event-r population from 08_event_metrics_all_sites.parquet;
+      median across eligible sites within Reach; cross-region tests retain countries
+      with at least 15 eligible Reaches
+    regional_event_r_n_site: 1268
+    regional_event_r_n_reach_all: 512
+    regional_event_r_n_reach_retained: 496
+    mechanism_covariates: complete independent daily event-r EVENT_COV population;
+      all static descriptor correlations, within-region tests, LORO, and Australia
+      mechanism comparisons are formed after Reach aggregation from this population,
+      without monthly river-GW eligibility; depth-dependent tests use finite-depth
+      sites before Reach aggregation
+    mechanism_covariates_n_site: 1268
+    mechanism_covariates_n_reach_all: 512
+    mechanism_covariates_n_reach_retained: 496
+    depth_missing_policy: complete_cases
+    depth_complete_case_rule: Filter finite site depth before Reach aggregation; response
+      and predictors use those same wells. Main daily population is preserved.
+    depth_complete_case_n_site: 1268
+    depth_missing_site_ids: []
+    depth_complete_case_n_reach_all: 512
+    depth_complete_case_n_reach_retained: 496
+    descriptor_finite_reaches:
+      width: 496
+      aridity: 496
+      depth: 496
+      phase_off: 474
+      regime: 496
+  kruskal_wallis_p: 2.619817512827581e-09
+  n_regions: 6
+  n_reaches: 496
+  regional_effect_size:
+    n_regions: 6
+    n_reaches: 496
+    kruskal_eta_squared_H: 0.0982774329255211
+    kruskal_eta_squared_H_definition: H / (n - 1); rank-based effect size
+    raw_anova_eta_squared: 0.09736075247590663
+    raw_anova_eta_squared_definition: SS_between / SS_total on reach-level event_r
+    label_permutation:
+      n_permutations: 10000
+      seed: 20260807
+      permutation_unit: region labels across reaches; observed region sizes preserved
+      alternative: 'one-sided: permuted effect >= observed effect'
+      p_kruskal_eta_squared_H: 9.999000099990002e-05
+      p_raw_anova_eta_squared: 9.999000099990002e-05
+  within_region_sign_tests:
+    width:
+      variable: width
+      region_results:
+      - region: Australia
+        n: 31
+        rho: 0.01895161290322581
+        p_value: 0.9193989840247143
+        sign: 1
+      - region: Canada
+        n: 26
+        rho: 0.07213675213675212
+        p_value: 0.7261936348597959
+        sign: 1
+      - region: China
+        n: 61
+        rho: 0.3157059756742464
+        p_value: 0.013194488351900123
+        sign: 1
+      - region: France
+        n: 125
+        rho: -0.059207373271889394
+        p_value: 0.51189873132628
+        sign: -1
+      - region: Germany
+        n: 188
+        rho: 0.27077678266664496
+        p_value: 0.00017100345028756676
+        sign: 1
+      - region: USA
+        n: 65
+        rho: 0.05131118881118881
+        p_value: 0.6847978552329933
+        sign: 1
+      n_regions: 6
+      n_positive: 5
+      n_negative: 1
+      test: exact two-sided binomial sign test against p=0.5; zero correlations excluded
+      p_value: 0.21875
+    depth:
+      variable: depth
+      region_results:
+      - region: Australia
+        n: 31
+        rho: -0.2887096774193549
+        p_value: 0.11521862762250103
+        sign: -1
+      - region: Canada
+        n: 26
+        rho: 0.1835897435897436
+        p_value: 0.36931756112366915
+        sign: 1
+      - region: China
+        n: 61
+        rho: 0.18075092543627708
+        p_value: 0.16331255580885515
+        sign: 1
+      - region: France
+        n: 125
+        rho: -0.11545314900153607
+        p_value: 0.1997971585606148
+        sign: -1
+      - region: Germany
+        n: 188
+        rho: -0.03191760263099437
+        p_value: 0.6636900327119063
+        sign: -1
+      - region: USA
+        n: 65
+        rho: -0.1819055944055944
+        p_value: 0.14699048210264537
+        sign: -1
+      n_regions: 6
+      n_positive: 2
+      n_negative: 4
+      test: exact two-sided binomial sign test against p=0.5; zero correlations excluded
+      p_value: 0.6875
+  aridity_between_region_spearman: 0.7142857142857143
+  aridity_within_reach_spearman: 0.033941520508118814
+  leave_one_region_out_obs_vs_pred_spearman: 0.2571428571428572
+  covariability_depth_sample: Independent daily event-r sites with finite depth filtered
+    before Reach aggregation; response and depth use the same wells
+  covariability_depth_spearman_rho: -0.13420850571062357
+  covariability_depth_spearman_n: 512
+  covariability_depth_n_site: 1268
+  covariability_depth_missing_site_ids: []
+  australia_event_r_full_daily:
+    n: 31
+    event_r: -0.023458801254967444
+    river_clocked: 0.1935483870967742
+    vs_rest:
+      n: 481
+      event_r: 0.28526887559725994
+      river_clocked: 0.4885654885654886
+  australia_mechanism_full_daily:
+    n: 31
+    event_r: -0.023458801254967444
+    river_clocked: 0.1935483870967742
+    aridity: 0.9736296072174073
+    depth_m: 11.5986
+    regime: 1.126803718915724
+    phase_off_mo: 2.168771816831776
+    vs_rest:
+      event_r: 0.2881531776006508
+      aridity: 1.3024314649679278
+      depth_m: 4.050485507246384
+      regime: 0.9469735912705283
+  caveat: regional event-r and mechanism analyses retain 6 regions from the same complete
+    daily event-r mother population; depth-dependent tests use the explicitly reported
+    finite-depth site subset; phase-offset correlations use their explicitly reported
+    finite-Reach subset because some sites lack monthly harmonic support; reach-level
+    event_r is noisy over a ~3-yr record; region=country bundles climate+geology+anthropogenic

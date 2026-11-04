@@ -1,0 +1,808 @@
+{
+  "harmonic_eligibility": {
+    "minimum_pairwise_finite_observations": 18,
+    "minimum_elapsed_span_years": 1.5,
+    "model_parameters": 6,
+    "full_column_rank_required": true,
+    "maximum_condition_number": 10000.0,
+    "accepted_record_policy": "use all pairwise-finite observations; do not truncate"
+  },
+  "single_reach_at_uncertainty": {
+    "method": "HC2-adjusted paired calendar-block wild bootstrap at fixed dates; sites resampled within Reach; shared calendar weights and synchronized replicates across all sites/Nodes in each Reach; equal-weight circular-mean phase",
+    "residual_block_months": 3,
+    "residual_block_unit": "calendar_month",
+    "temporal_dependence_unit": "Reach",
+    "replicate_alignment": "same replicate across sites, including repeated sampled sites",
+    "multiplier": "Rademacher +/-1, shared by all river/GW site series in each Reach/calendar block",
+    "block_origin": "uniform random monthly offset per replicate; no endpoint wrapping",
+    "missing_months": "original observation dates and missingness retained; no interpolation",
+    "thresholds": {
+      "A": 1.2,
+      "tau_days": 0.0,
+      "classification_probability": 0.95
+    },
+    "ALL": {
+      "n_reach": 1041,
+      "point_amplified_or_lead_fraction": 0.5465898174831892,
+      "robust_violation_fraction_p_ge_0p95": 0.22382324687800192,
+      "robust_compatible_fraction_p_le_0p05": 0.14024975984630164,
+      "uncertain_classification_fraction": 0.6359269932756965,
+      "uncertainty_propagated_amplified_or_lead_fraction": [
+        0.5244956772334294,
+        0.554982804995197,
+        0.5850144092219021
+      ],
+      "uncertainty_propagated_lead_fraction": [
+        0.3035542747358309,
+        0.3329362151777137,
+        0.3621517771373679
+      ],
+      "median_tau_ci_width_days": 154.29369027763323,
+      "median_A_ci_fold": 8.851437422784764,
+      "n_phase_concentration_below_0p5": 71
+    },
+    "DEV": {
+      "n_reach": 463,
+      "point_amplified_or_lead_fraction": 0.49676025917926564,
+      "robust_violation_fraction_p_ge_0p95": 0.1771058315334773,
+      "robust_compatible_fraction_p_le_0p05": 0.183585313174946,
+      "uncertain_classification_fraction": 0.6393088552915767,
+      "uncertainty_propagated_amplified_or_lead_fraction": [
+        0.46004319654427644,
+        0.5053848812095032,
+        0.550755939524838
+      ],
+      "uncertainty_propagated_lead_fraction": [
+        0.2613390928725702,
+        0.3036995680345573,
+        0.34773218142548595
+      ],
+      "median_tau_ci_width_days": 191.80229620183803,
+      "median_A_ci_fold": 10.07537208870759,
+      "n_phase_concentration_below_0p5": 50
+    },
+    "HOLDOUT": {
+      "n_reach": 578,
+      "point_amplified_or_lead_fraction": 0.5865051903114187,
+      "robust_violation_fraction_p_ge_0p95": 0.26124567474048443,
+      "robust_compatible_fraction_p_le_0p05": 0.10553633217993079,
+      "uncertain_classification_fraction": 0.6332179930795848,
+      "uncertainty_propagated_amplified_or_lead_fraction": [
+        0.5553633217993079,
+        0.5947126297577856,
+        0.6349480968858131
+      ],
+      "uncertainty_propagated_lead_fraction": [
+        0.3166089965397924,
+        0.3563558823529412,
+        0.3961937716262976
+      ],
+      "median_tau_ci_width_days": 128.39151652200005,
+      "median_A_ci_fold": 7.58387548929027,
+      "n_phase_concentration_below_0p5": 21
+    }
+  },
+  "bootstrap_ci_by_reach": {
+    "sample_definition": {
+      "A_tau": "monthly-harmonic-eligible 08_global_coupling_metrics; median A and equal-weight circular-mean tau within Reach",
+      "seasonal_r": "every 08_global_coupling_metrics site with finite monthly seasonal_r, then median seasonal_r within Reach; daily event-r eligibility is not imposed",
+      "event_r": "complete independently daily-eligible 08_event_metrics_all_sites population; monthly harmonic eligibility is not imposed; median event_r within Reach",
+      "event_bootstrap_unit": "Reach",
+      "event_bootstrap_replicates": 10000,
+      "event_bootstrap_seed": {
+        "ALL": 20260808,
+        "DEV": 20260810,
+        "HOLDOUT": 20260809
+      },
+      "interval_format": "[2.5th percentile, point estimate, 97.5th percentile]"
+    },
+    "ALL": {
+      "denominator": {
+        "A_tau_n_reach": 1041,
+        "seasonal_r_n_site_pairs": 6064,
+        "seasonal_r_n_reach": 1041,
+        "event_r_n_site_pairs": 4037,
+        "event_r_n_reach": 1162
+      },
+      "n_reach": 1041,
+      "n_site_seasonal_monthly": 6064,
+      "n_reach_seasonal_monthly": 1041,
+      "n_site_event_independent": 4037,
+      "n_reach_event_independent": 1162,
+      "amplified_or_lead_frac": [
+        0.5168107588856868,
+        0.5465898174831892,
+        0.5763688760806917
+      ],
+      "lead_frac": [
+        0.2737752161383285,
+        0.3016330451488953,
+        0.32949087415946204
+      ],
+      "seasonal_r_median": [
+        0.2850613512056897,
+        0.3179359590528237,
+        0.34844642152863226
+      ],
+      "event_r_bootstrap_seed": 20260808,
+      "event_r_median": [
+        0.16263525028965103,
+        0.1836053474344213,
+        0.20729301031002906
+      ],
+      "event_r_frac_ge0p3": [
+        0.3571213425129088,
+        0.3846815834767642,
+        0.41308089500860584
+      ]
+    },
+    "DEV": {
+      "denominator": {
+        "A_tau_n_reach": 463,
+        "seasonal_r_n_site_pairs": 5074,
+        "seasonal_r_n_reach": 463,
+        "event_r_n_site_pairs": 2889,
+        "event_r_n_reach": 486
+      },
+      "n_reach": 463,
+      "n_site_seasonal_monthly": 5074,
+      "n_reach_seasonal_monthly": 463,
+      "n_site_event_independent": 2889,
+      "n_reach_event_independent": 486,
+      "amplified_or_lead_frac": [
+        0.4514038876889849,
+        0.49676025917926564,
+        0.5421166306695464
+      ],
+      "lead_frac": [
+        0.2267818574514039,
+        0.2678185745140389,
+        0.30885529157667385
+      ],
+      "seasonal_r_median": [
+        0.2251924864863919,
+        0.2774697888030474,
+        0.3386033036312913
+      ],
+      "event_r_bootstrap_seed": 20260810,
+      "event_r_median": [
+        0.1515012841525842,
+        0.18843609230846872,
+        0.21852214113175442
+      ],
+      "event_r_frac_ge0p3": [
+        0.33539094650205764,
+        0.3786008230452675,
+        0.4218106995884774
+      ]
+    },
+    "HOLDOUT": {
+      "denominator": {
+        "A_tau_n_reach": 578,
+        "seasonal_r_n_site_pairs": 990,
+        "seasonal_r_n_reach": 578,
+        "event_r_n_site_pairs": 1148,
+        "event_r_n_reach": 676
+      },
+      "n_reach": 578,
+      "n_site_seasonal_monthly": 990,
+      "n_reach_seasonal_monthly": 578,
+      "n_site_event_independent": 1148,
+      "n_reach_event_independent": 676,
+      "amplified_or_lead_frac": [
+        0.5467128027681661,
+        0.5865051903114187,
+        0.6262975778546713
+      ],
+      "lead_frac": [
+        0.29238754325259514,
+        0.328719723183391,
+        0.36678200692041524
+      ],
+      "seasonal_r_median": [
+        0.29408052422100683,
+        0.33999759901521215,
+        0.38135183089129426
+      ],
+      "event_r_bootstrap_seed": 20260809,
+      "event_r_median": [
+        0.15778250942793903,
+        0.17344371812540782,
+        0.21142433942653027
+      ],
+      "event_r_frac_ge0p3": [
+        0.3520710059171598,
+        0.3890532544378698,
+        0.4260355029585799
+      ]
+    }
+  },
+  "same_sample_correlations": {
+    "sample_definition": {
+      "source_table": "08_event_metrics_all_sites.parquet",
+      "monthly_harmonic_eligibility_required": false,
+      "site_filter": "complete independently daily-eligible site_no x reach_id rows with finite raw_r_same_sample, seasonal_harmonic_r_same_sample, and event_r; no monthly harmonic eligibility filter is imposed",
+      "observation_dates": "all three correlations use the identical pairwise-finite daily river-well observations selected in step 2",
+      "seasonal_harmonic_definition": "Pearson correlation between fitted annual+semiannual reconstructions; intercept and linear trend excluded",
+      "reach_aggregation": "median across the fixed site-pair intersection within each Reach",
+      "bootstrap_unit": "Reach; synchronized paired resampling across metrics",
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed_base": 20260808,
+      "bootstrap_seed_by_split": {
+        "ALL": 20260808,
+        "DEV": 20260810,
+        "HOLDOUT": 20260809
+      },
+      "interval_format": "[2.5th percentile, point estimate, 97.5th percentile]",
+      "paired_difference_definition": "median_paired_difference is median_i(left_i - right_i); difference_of_medians is median_i(left_i) - median_i(right_i). They are not algebraically interchangeable and neither is an additive fraction of correlation explained by seasonality."
+    },
+    "ALL": {
+      "n_site_pairs": 4037,
+      "n_reach": 1162,
+      "bootstrap_seed": 20260808,
+      "metric_medians": {
+        "raw_r_same_sample_median": [
+          0.23510045993490256,
+          0.26035905601967185,
+          0.29032430206391246
+        ],
+        "seasonal_harmonic_r_same_sample_median": [
+          0.4222734362188103,
+          0.47284484994735376,
+          0.517166191322823
+        ],
+        "event_r_median": [
+          0.16263525028965103,
+          0.1836053474344213,
+          0.20729301031002906
+        ]
+      },
+      "event_r_frac_ge0p3": [
+        0.3571213425129088,
+        0.3846815834767642,
+        0.41308089500860584
+      ],
+      "paired_comparisons": {
+        "seasonal_harmonic_minus_event": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            0.1329561026062363,
+            0.16038629131717302,
+            0.19361677255724258
+          ],
+          "difference_of_medians": [
+            0.24415038026144084,
+            0.28923950251293246,
+            0.3302035988448551
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.6075731497418244,
+            0.6351118760757315,
+            0.6635111876075731
+          ]
+        },
+        "raw_minus_event": {
+          "left_metric": "raw_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            0.026864324464654792,
+            0.04078623348428063,
+            0.051247709149219695
+          ],
+          "difference_of_medians": [
+            0.05790916681309616,
+            0.07675370858525055,
+            0.10093128084899122
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.576592082616179,
+            0.6049913941480206,
+            0.6333907056798623
+          ]
+        },
+        "seasonal_harmonic_minus_raw": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "raw_r_same_sample",
+          "median_paired_difference": [
+            0.07591945790722465,
+            0.0904518373880085,
+            0.11189342217745868
+          ],
+          "difference_of_medians": [
+            0.1713610125677281,
+            0.2124857939276819,
+            0.2455177110465804
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.6067125645438899,
+            0.6342512908777969,
+            0.6617900172117039
+          ]
+        }
+      }
+    },
+    "DEV": {
+      "n_site_pairs": 2889,
+      "n_reach": 486,
+      "bootstrap_seed": 20260810,
+      "metric_medians": {
+        "raw_r_same_sample_median": [
+          0.20520702473057295,
+          0.2392245157843414,
+          0.27809015270255016
+        ],
+        "seasonal_harmonic_r_same_sample_median": [
+          0.2820103882972268,
+          0.37379884874958214,
+          0.4288955571398645
+        ],
+        "event_r_median": [
+          0.1515012841525842,
+          0.18843609230846872,
+          0.21852214113175442
+        ]
+      },
+      "event_r_frac_ge0p3": [
+        0.33539094650205764,
+        0.3786008230452675,
+        0.4218106995884774
+      ],
+      "paired_comparisons": {
+        "seasonal_harmonic_minus_event": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            -0.006423994395643572,
+            0.04251257232950126,
+            0.10141084942595524
+          ],
+          "difference_of_medians": [
+            0.0999626634327001,
+            0.1853627564411134,
+            0.24249844544635504
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.49588477366255146,
+            0.5411522633744856,
+            0.5844135802469128
+          ]
+        },
+        "raw_minus_event": {
+          "left_metric": "raw_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            0.005570539121479812,
+            0.014639677668931858,
+            0.03846095093802425
+          ],
+          "difference_of_medians": [
+            0.020783031890698994,
+            0.050788423475872674,
+            0.08066089652488216
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.5164609053497943,
+            0.5617283950617284,
+            0.6069958847736625
+          ]
+        },
+        "seasonal_harmonic_minus_raw": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "raw_r_same_sample",
+          "median_paired_difference": [
+            -0.013322756332283137,
+            0.02906689090345857,
+            0.054738206328590056
+          ],
+          "difference_of_medians": [
+            0.06187954813914142,
+            0.13457433296524074,
+            0.18211429859947173
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.4897119341563786,
+            0.5349794238683128,
+            0.5802469135802469
+          ]
+        }
+      }
+    },
+    "HOLDOUT": {
+      "n_site_pairs": 1148,
+      "n_reach": 676,
+      "bootstrap_seed": 20260809,
+      "metric_medians": {
+        "raw_r_same_sample_median": [
+          0.24377764355826342,
+          0.2820422076100346,
+          0.31488437977982353
+        ],
+        "seasonal_harmonic_r_same_sample_median": [
+          0.49404831345343536,
+          0.5435535731861889,
+          0.6143436472426319
+        ],
+        "event_r_median": [
+          0.15778250942793903,
+          0.17344371812540782,
+          0.21142433942653027
+        ]
+      },
+      "event_r_frac_ge0p3": [
+        0.3520710059171598,
+        0.3890532544378698,
+        0.4260355029585799
+      ],
+      "paired_comparisons": {
+        "seasonal_harmonic_minus_event": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            0.18885384835504715,
+            0.22718026613723258,
+            0.2651640313505158
+          ],
+          "difference_of_medians": [
+            0.3209156177095712,
+            0.3701098550607811,
+            0.422496976774649
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.6686390532544378,
+            0.7026627218934911,
+            0.7366863905325444
+          ]
+        },
+        "raw_minus_event": {
+          "left_metric": "raw_r_same_sample",
+          "right_metric": "event_r",
+          "median_paired_difference": [
+            0.041998868275973766,
+            0.057397620538248845,
+            0.07682791906013886
+          ],
+          "difference_of_medians": [
+            0.07378802107435466,
+            0.1085984894846268,
+            0.13070966190135644
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.599112426035503,
+            0.636094674556213,
+            0.6715976331360947
+          ]
+        },
+        "seasonal_harmonic_minus_raw": {
+          "left_metric": "seasonal_harmonic_r_same_sample",
+          "right_metric": "raw_r_same_sample",
+          "median_paired_difference": [
+            0.11384785313370893,
+            0.14039996037577948,
+            0.166763661780932
+          ],
+          "difference_of_medians": [
+            0.22452900956300623,
+            0.2615113655761543,
+            0.31234455245031245
+          ],
+          "fraction_reach_paired_difference_positive": [
+            0.6715976331360947,
+            0.7056213017751479,
+            0.7381656804733728
+          ]
+        }
+      }
+    }
+  },
+  "threshold_grid": {
+    "ALL": {
+      "A>1.1 | tau<-15": 0.5302593659942363,
+      "A>1.1 | tau<=0": 0.5658021133525456,
+      "A>1.1 | tau<+15": 0.6138328530259366,
+      "A>1.2 | tau<-15": 0.5043227665706052,
+      "A>1.2 | tau<=0": 0.5465898174831892,
+      "A>1.2 | tau<+15": 0.5975024015369836,
+      "A>1.5 | tau<-15": 0.45341018251681076,
+      "A>1.5 | tau<=0": 0.49951969260326606,
+      "A>1.5 | tau<+15": 0.5561959654178674
+    },
+    "HOLDOUT": {
+      "A>1.1 | tau<-15": 0.5536332179930796,
+      "A>1.1 | tau<=0": 0.6003460207612457,
+      "A>1.1 | tau<+15": 0.6608996539792388,
+      "A>1.2 | tau<-15": 0.5311418685121108,
+      "A>1.2 | tau<=0": 0.5865051903114187,
+      "A>1.2 | tau<+15": 0.6505190311418685,
+      "A>1.5 | tau<-15": 0.47923875432525953,
+      "A>1.5 | tau<=0": 0.5397923875432526,
+      "A>1.5 | tau<+15": 0.6124567474048442
+    }
+  },
+  "distance_robustness": {
+    "<= 0.5 km": {
+      "n_reach_all": 284,
+      "n_reach_holdout": 109,
+      "amplified_or_lead_all": 0.43661971830985913,
+      "amplified_or_lead_holdout": 0.45871559633027525
+    },
+    "<= 1 km": {
+      "n_reach_all": 507,
+      "n_reach_holdout": 219,
+      "amplified_or_lead_all": 0.47928994082840237,
+      "amplified_or_lead_holdout": 0.5296803652968036
+    },
+    "<= 2 km": {
+      "n_reach_all": 715,
+      "n_reach_holdout": 334,
+      "amplified_or_lead_all": 0.48951048951048953,
+      "amplified_or_lead_holdout": 0.5598802395209581
+    },
+    "<= 5 km": {
+      "n_reach_all": 1041,
+      "n_reach_holdout": 578,
+      "amplified_or_lead_all": 0.5465898174831892,
+      "amplified_or_lead_holdout": 0.5865051903114187
+    }
+  },
+  "distance_robustness_definition": {
+    "distance_column": "distance_prior_bank_m",
+    "source_file": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+    "cache_file": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/shared_cache/distance_robustness_monthly_strict.parquet",
+    "source_maximum_km": 5,
+    "nested_cumulative_screens_km": [
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "strict_threshold_specific_rematch": true,
+    "phase1_anchor_validation": {
+      "threshold_m": 5000,
+      "comparison_population": "site-month rows with at least one finite river/GW value; climate-only calendar rows excluded",
+      "n_monthly_rows": 458291,
+      "river_wse_max_abs_difference": 9.094947017729282e-13,
+      "Value_EGM2008_m_max_abs_difference": 9.094947017729282e-13
+    },
+    "operation_order": [
+      "apply threshold to unranked 5-km candidate universe",
+      "count unique observation dates per site/Reach/Node",
+      "select best Node within Reach",
+      "select Top-1 Reach within well",
+      "rebuild the selected pair from the nearest enclosing Phase-1 candidate table",
+      "fill early missing Reach/Node identifiers from the threshold-specific Top-1",
+      "drop exact duplicate rows",
+      "aggregate overlapping granules to daily means",
+      "aggregate daily values to monthly means",
+      "fit annual+semiannual harmonic A and tau"
+    ],
+    "cache_provenance": {
+      "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+      "size_bytes": 20043733165,
+      "mtime_ns": 1793735005140984816,
+      "algorithm_version": 7,
+      "thresholds_m": [
+        500,
+        1000,
+        2000,
+        5000
+      ],
+      "distance_column": "distance_prior_bank_m",
+      "ranking_observation_unit": "unique_date",
+      "series_sources": {
+        "500": {
+          "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+          "size_bytes": 1493107291,
+          "mtime_ns": 1793737703759418333
+        },
+        "1000": {
+          "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+          "size_bytes": 1493107291,
+          "mtime_ns": 1793737703759418333
+        },
+        "2000": {
+          "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance3000/3results_all_country_nodeid_distance3000_withwidth50_pre_et.txt",
+          "size_bytes": 8792988572,
+          "mtime_ns": 1793736882209127954
+        },
+        "5000": {
+          "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+          "size_bytes": 20043733165,
+          "mtime_ns": 1793735005140984816
+        }
+      },
+      "strict_threshold_specific_rematch": true,
+      "candidate_group_count": 565363,
+      "selection_count_by_threshold": {
+        "500": 2253,
+        "1000": 4190,
+        "2000": 7408,
+        "5000": 14022
+      },
+      "streaming_passes": {
+        "selection_source": 1,
+        "each_unique_series_source": 1
+      },
+      "selection_source": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+      "series_source_by_threshold": {
+        "500": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+        "1000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+        "2000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance3000/3results_all_country_nodeid_distance3000_withwidth50_pre_et.txt",
+        "5000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt"
+      },
+      "daily_aggregation": "mean per site/Reach/Node/date",
+      "monthly_aggregation": "mean of unique daily values",
+      "phase1_missing_identifier_fill": "complete source well series outer-joined to threshold-specific Top-1 river calendar",
+      "exact_duplicate_handling": "drop before same-day averaging",
+      "ranking": [
+        "maximum unique observation dates",
+        "minimum distance_prior_bank_m",
+        "deterministic Reach/Node ID tie-break"
+      ]
+    }
+  },
+  "deseason_methods": [
+    {
+      "method": "monthly_climatology_removal",
+      "n_reach": 1041,
+      "seasonal_r_median": 0.3179359590528237,
+      "deseason_r_median": 0.2761114568212877
+    },
+    {
+      "method": "annual+semiannual_harmonic_residual",
+      "n_reach": 1041,
+      "seasonal_r_median": 0.3179359590528237,
+      "deseason_r_median": 0.26583063931159456
+    },
+    {
+      "method": "detrend+monthly_climatology",
+      "n_reach": 1041,
+      "seasonal_r_median": 0.3179359590528237,
+      "deseason_r_median": 0.28839985395538525
+    }
+  ],
+  "deseason_methods_sample_definition": {
+    "unit": "site_no x reach_id pair, then median aggregation by Reach",
+    "rule": "fixed intersection of pairs with finite residual correlation under all three methods",
+    "n_pair": 6064,
+    "n_reach": 1041
+  },
+  "synthetic_harmonic_test": {
+    "A_lag30": 0.4999999999999997,
+    "tau_lag30_days": 29.999999999999964,
+    "tau_lead20_days": -20.00000000000001,
+    "passed": true
+  },
+  "event_permutation_null": {
+    "B": 10000,
+    "time_aware_null": {
+      "model": "independent continuous-time AR(1)/OU marginal residual surrogates",
+      "surrogate_processing": "same six-column harmonic residualization as observed event_r; standardize after projection",
+      "refit_harmonics_for_each_surrogate": true,
+      "dates": "exact pairwise-finite observed dates; no interpolation",
+      "autocorrelation": "phi(delta_t)=exp(-delta_t/tau_c)",
+      "tau_estimation": "profile likelihood over a 0.5-730.5 day logarithmic grid",
+      "cross_series_null": "river and groundwater innovations simulated independently",
+      "n_site": 4037,
+      "river_tau_days_median": 3.8559497172912613,
+      "groundwater_tau_days_median": 48.4342019458871,
+      "note": "time-aware OU is the primary strict null; observation-order circular shift is retained as a simpler sensitivity null"
+    },
+    "sample_definition": {
+      "source": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_2_Data_Analysis/distance5000_data/08_event_metrics_all_sites.parquet",
+      "unit": "independent daily event-r site_no, aggregated to its frozen daily-population reach_id",
+      "monthly_harmonic_eligibility_required": false,
+      "n_site": 4037,
+      "n_reach_all": 1162,
+      "n_reach_dev": 486,
+      "n_reach_holdout": 676,
+      "split": "frozen Reach-level split from 08_event_metrics_all_sites.parquet",
+      "max_abs_observed_event_r_difference": 0.0
+    },
+    "ALL": {
+      "label": "ALL",
+      "n_site": 4037,
+      "n_reach": 1162,
+      "obs_event_r_median": 0.1836053474344213,
+      "obs_event_r_median_ci95": [
+        0.16263525028965103,
+        0.1836053474344213,
+        0.20729301031002906
+      ],
+      "null_event_r_median": -0.007885244226106864,
+      "null_event_r_median_p95": -0.0016721000905186682,
+      "p_median": 9.999000099990002e-05,
+      "obs_frac_ge0p3": 0.3846815834767642,
+      "obs_frac_ge0p3_ci95": [
+        0.3571213425129088,
+        0.3846815834767642,
+        0.41308089500860584
+      ],
+      "null_frac_ge0p3": 0.022375215146299483,
+      "p_frac": 9.999000099990002e-05,
+      "time_aware_null_event_r_median": 3.6757499764005706e-06,
+      "time_aware_null_event_r_median_p95": 0.007165820226847296,
+      "time_aware_p_median": 9.999000099990002e-05,
+      "time_aware_null_frac_ge0p3": 0.03098106712564544,
+      "time_aware_null_frac_ge0p3_p95": 0.039586919104991396,
+      "time_aware_p_frac": 9.999000099990002e-05,
+      "observed_bootstrap": {
+        "unit": "Reach",
+        "n_replicates": 10000,
+        "seed": 20260808,
+        "interval": "percentile 95% CI",
+        "interval_format": "[2.5th percentile, point estimate, 97.5th percentile]"
+      }
+    },
+    "DEV": {
+      "label": "DEV",
+      "n_site": 2889,
+      "n_reach": 486,
+      "obs_event_r_median": 0.18843609230846872,
+      "obs_event_r_median_ci95": [
+        0.1515012841525842,
+        0.18843609230846872,
+        0.21852214113175442
+      ],
+      "null_event_r_median": -0.008610613066593095,
+      "null_event_r_median_p95": -0.0010342984412076153,
+      "p_median": 9.999000099990002e-05,
+      "obs_frac_ge0p3": 0.3786008230452675,
+      "obs_frac_ge0p3_ci95": [
+        0.33539094650205764,
+        0.3786008230452675,
+        0.4218106995884774
+      ],
+      "null_frac_ge0p3": 0.0102880658436214,
+      "p_frac": 9.999000099990002e-05,
+      "time_aware_null_event_r_median": 5.354559596214949e-05,
+      "time_aware_null_event_r_median_p95": 0.009238106912761293,
+      "time_aware_p_median": 9.999000099990002e-05,
+      "time_aware_null_frac_ge0p3": 0.0205761316872428,
+      "time_aware_null_frac_ge0p3_p95": 0.03292181069958848,
+      "time_aware_p_frac": 9.999000099990002e-05,
+      "observed_bootstrap": {
+        "unit": "Reach",
+        "n_replicates": 10000,
+        "seed": 20260810,
+        "interval": "percentile 95% CI",
+        "interval_format": "[2.5th percentile, point estimate, 97.5th percentile]"
+      }
+    },
+    "HOLDOUT": {
+      "label": "HOLDOUT",
+      "n_site": 1148,
+      "n_reach": 676,
+      "obs_event_r_median": 0.17344371812540782,
+      "obs_event_r_median_ci95": [
+        0.15778250942793903,
+        0.17344371812540782,
+        0.21142433942653027
+      ],
+      "null_event_r_median": -0.006964575379601225,
+      "null_event_r_median_p95": 0.0032446105873829923,
+      "p_median": 9.999000099990002e-05,
+      "obs_frac_ge0p3": 0.3890532544378698,
+      "obs_frac_ge0p3_ci95": [
+        0.3520710059171598,
+        0.3890532544378698,
+        0.4260355029585799
+      ],
+      "null_frac_ge0p3": 0.03106508875739645,
+      "p_frac": 9.999000099990002e-05,
+      "time_aware_null_event_r_median": -0.00010572191639673134,
+      "time_aware_null_event_r_median_p95": 0.01132275389511294,
+      "time_aware_p_median": 9.999000099990002e-05,
+      "time_aware_null_frac_ge0p3": 0.038461538461538464,
+      "time_aware_null_frac_ge0p3_p95": 0.05029585798816568,
+      "time_aware_p_frac": 9.999000099990002e-05,
+      "observed_bootstrap": {
+        "unit": "Reach",
+        "n_replicates": 10000,
+        "seed": 20260809,
+        "interval": "percentile 95% CI",
+        "interval_format": "[2.5th percentile, point estimate, 97.5th percentile]"
+      }
+    }
+  }
+}

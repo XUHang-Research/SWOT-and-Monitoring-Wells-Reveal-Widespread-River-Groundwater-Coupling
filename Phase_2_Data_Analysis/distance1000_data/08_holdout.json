@@ -1,0 +1,18 @@
+{
+  "dev_countries": [
+    "China",
+    "Germany"
+  ],
+  "dev_sites": 1382,
+  "holdout_sites": 336,
+  "holdout_countries": [
+    "Australia",
+    "Brazil",
+    "Canada",
+    "France",
+    "NGWMN",
+    "Norway",
+    "Sweden",
+    "USGS"
+  ]
+}

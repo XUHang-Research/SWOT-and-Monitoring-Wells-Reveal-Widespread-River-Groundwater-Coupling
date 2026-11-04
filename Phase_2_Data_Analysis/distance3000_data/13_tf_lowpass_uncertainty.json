@@ -1,0 +1,228 @@
+{
+  "provenance": {
+    "generated_by": "07_tf_comparison.py via 14_tf_uncertainty.py",
+    "monthly_source": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance3000/6matched_results_monthly.txt",
+    "point_estimate_source": "12_tf_comparison.json A2_lowpass",
+    "n_site": 4198,
+    "n_reach": 847,
+    "bootstrap_replicates_per_site_and_reach": 10000,
+    "residual_block_months": 3,
+    "residual_block_unit": "calendar_month",
+    "temporal_dependence_unit": "Reach",
+    "replicate_alignment": "shared calendar weights and synchronized replicate across sites/Nodes",
+    "seed": 20260812,
+    "sampling_calendar": "each site's exact pairwise-finite accepted monthly dates",
+    "interpolation": false,
+    "harmonic_eligibility": {
+      "minimum_pairwise_finite_observations": 18,
+      "minimum_elapsed_span_years": 1.5,
+      "model_parameters": 6,
+      "full_column_rank_required": true,
+      "maximum_condition_number": 10000.0,
+      "accepted_record_policy": "use all pairwise-finite observations; do not truncate"
+    }
+  },
+  "summary": {
+    "method": "paired HC2-adjusted calendar-block wild bootstrap at each site's fixed accepted monthly dates; all four band amplitudes refitted; sites resampled within Reach with shared weights and synchronized replicates",
+    "ordering_statistic": "log(TF1/TF2); positive is exactly equivalent to TF2<TF1",
+    "equal_gain_null": "groundwater semiannual fitted amplitude adjusted so annual and semiannual groundwater/river gains are equal; original dates, phases, baseline/trend, and paired residual blocks retained",
+    "residual_block_months": 3,
+    "residual_block_unit": "calendar_month",
+    "temporal_dependence_unit": "Reach",
+    "endpoint_wrapping": false,
+    "classification_probability": {
+      "robust_lowpass": ">=0.95",
+      "uncertain": "0.05<p<0.95",
+      "robust_opposite": "<=0.05"
+    },
+    "ALL": {
+      "n_reach": 847,
+      "point_fraction_TF2_lt_TF1": 0.7508854781582054,
+      "uncertainty_propagated_fraction_TF2_lt_TF1": [
+        0.6658795749704841,
+        0.6972935064935065,
+        0.7272727272727273
+      ],
+      "robust_lowpass_fraction_p_ge_0p95": 0.12868949232585597,
+      "uncertain_fraction": 0.8677685950413223,
+      "robust_opposite_fraction_p_le_0p05": 0.0035419126328217238,
+      "equal_gain_sampling_null_fraction": [
+        0.46871310507674147,
+        0.5021157024793389,
+        0.5348288075560803
+      ],
+      "p_observed_point_vs_equal_gain_null": 9.999000099990002e-05,
+      "median_joint_amplitude_snr": 1.305327078163558,
+      "joint_amplitude_snr_tertiles": [
+        {
+          "tertile": "low",
+          "n_reach": 282,
+          "snr_range": [
+            0.08345814387848169,
+            1.0577977012968207
+          ],
+          "point_fraction_TF2_lt_TF1": 0.6453900709219859,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.5921985815602837,
+            0.6498638297872341,
+            0.7056737588652482
+          ]
+        },
+        {
+          "tertile": "middle",
+          "n_reach": 282,
+          "snr_range": [
+            1.0613336844579173,
+            1.5228228823717183
+          ],
+          "point_fraction_TF2_lt_TF1": 0.8226950354609929,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.6808510638297872,
+            0.7322968085106383,
+            0.7836879432624113
+          ]
+        },
+        {
+          "tertile": "high",
+          "n_reach": 283,
+          "snr_range": [
+            1.5257513962008546,
+            4.6756566364284655
+          ],
+          "point_fraction_TF2_lt_TF1": 0.784452296819788,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.657243816254417,
+            0.7096759717314488,
+            0.7632508833922261
+          ]
+        }
+      ]
+    },
+    "DEV": {
+      "n_reach": 417,
+      "point_fraction_TF2_lt_TF1": 0.7913669064748201,
+      "uncertainty_propagated_fraction_TF2_lt_TF1": [
+        0.6690647482014388,
+        0.7135764988009592,
+        0.7577937649880095
+      ],
+      "robust_lowpass_fraction_p_ge_0p95": 0.11990407673860912,
+      "uncertain_fraction": 0.8776978417266187,
+      "robust_opposite_fraction_p_le_0p05": 0.002398081534772182,
+      "equal_gain_sampling_null_fraction": [
+        0.44844124700239807,
+        0.49491294964028787,
+        0.5419664268585132
+      ],
+      "p_observed_point_vs_equal_gain_null": 9.999000099990002e-05,
+      "median_joint_amplitude_snr": 1.2853931010796358,
+      "joint_amplitude_snr_tertiles": [
+        {
+          "tertile": "low",
+          "n_reach": 139,
+          "snr_range": [
+            0.08345814387848169,
+            1.0941870179267714
+          ],
+          "point_fraction_TF2_lt_TF1": 0.6906474820143885,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.5755395683453237,
+            0.6568654676258994,
+            0.7338129496402878
+          ]
+        },
+        {
+          "tertile": "middle",
+          "n_reach": 139,
+          "snr_range": [
+            1.0942571236976715,
+            1.468779210657467
+          ],
+          "point_fraction_TF2_lt_TF1": 0.8273381294964028,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.6618705035971223,
+            0.7387776978417266,
+            0.8129496402877698
+          ]
+        },
+        {
+          "tertile": "high",
+          "n_reach": 139,
+          "snr_range": [
+            1.4689505297901488,
+            4.6756566364284655
+          ],
+          "point_fraction_TF2_lt_TF1": 0.8561151079136691,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.6690647482014388,
+            0.7450863309352518,
+            0.8129496402877698
+          ]
+        }
+      ]
+    },
+    "HOLDOUT": {
+      "n_reach": 430,
+      "point_fraction_TF2_lt_TF1": 0.7116279069767442,
+      "uncertainty_propagated_fraction_TF2_lt_TF1": [
+        0.6372093023255814,
+        0.6815027906976744,
+        0.7255813953488373
+      ],
+      "robust_lowpass_fraction_p_ge_0p95": 0.1372093023255814,
+      "uncertain_fraction": 0.858139534883721,
+      "robust_opposite_fraction_p_le_0p05": 0.004651162790697674,
+      "equal_gain_sampling_null_fraction": [
+        0.4604651162790698,
+        0.5091006976744186,
+        0.5558139534883721
+      ],
+      "p_observed_point_vs_equal_gain_null": 9.999000099990002e-05,
+      "median_joint_amplitude_snr": 1.3344861302996869,
+      "joint_amplitude_snr_tertiles": [
+        {
+          "tertile": "low",
+          "n_reach": 143,
+          "snr_range": [
+            0.08847289138277448,
+            1.0418456895521877
+          ],
+          "point_fraction_TF2_lt_TF1": 0.6013986013986014,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.5664335664335665,
+            0.6463146853146853,
+            0.7202797202797203
+          ]
+        },
+        {
+          "tertile": "middle",
+          "n_reach": 143,
+          "snr_range": [
+            1.0429072880834815,
+            1.5861963640996897
+          ],
+          "point_fraction_TF2_lt_TF1": 0.7902097902097902,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.6293706293706294,
+            0.7027811188811188,
+            0.7762237762237763
+          ]
+        },
+        {
+          "tertile": "high",
+          "n_reach": 144,
+          "snr_range": [
+            1.5938300873003572,
+            4.6535173567129995
+          ],
+          "point_fraction_TF2_lt_TF1": 0.7430555555555556,
+          "uncertainty_propagated_fraction_TF2_lt_TF1": [
+            0.6180555555555556,
+            0.6953159722222223,
+            0.7708333333333334
+          ]
+        }
+      ]
+    }
+  }
+}

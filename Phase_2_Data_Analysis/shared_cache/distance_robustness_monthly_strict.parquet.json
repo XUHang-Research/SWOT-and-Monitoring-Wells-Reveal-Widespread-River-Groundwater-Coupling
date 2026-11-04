@@ -1,0 +1,64 @@
+{
+  "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+  "size_bytes": 20043733165,
+  "mtime_ns": 1793735005140984816,
+  "algorithm_version": 7,
+  "thresholds_m": [
+    500,
+    1000,
+    2000,
+    5000
+  ],
+  "distance_column": "distance_prior_bank_m",
+  "ranking_observation_unit": "unique_date",
+  "series_sources": {
+    "500": {
+      "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+      "size_bytes": 1493107291,
+      "mtime_ns": 1793737703759418333
+    },
+    "1000": {
+      "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+      "size_bytes": 1493107291,
+      "mtime_ns": 1793737703759418333
+    },
+    "2000": {
+      "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance3000/3results_all_country_nodeid_distance3000_withwidth50_pre_et.txt",
+      "size_bytes": 8792988572,
+      "mtime_ns": 1793736882209127954
+    },
+    "5000": {
+      "path": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+      "size_bytes": 20043733165,
+      "mtime_ns": 1793735005140984816
+    }
+  },
+  "strict_threshold_specific_rematch": true,
+  "candidate_group_count": 565363,
+  "selection_count_by_threshold": {
+    "500": 2253,
+    "1000": 4190,
+    "2000": 7408,
+    "5000": 14022
+  },
+  "streaming_passes": {
+    "selection_source": 1,
+    "each_unique_series_source": 1
+  },
+  "selection_source": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+  "series_source_by_threshold": {
+    "500": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+    "1000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+    "2000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance3000/3results_all_country_nodeid_distance3000_withwidth50_pre_et.txt",
+    "5000": "/storage/home/hxu/codex_user/Paper/GRL1/Complete_Process/Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt"
+  },
+  "daily_aggregation": "mean per site/Reach/Node/date",
+  "monthly_aggregation": "mean of unique daily values",
+  "phase1_missing_identifier_fill": "complete source well series outer-joined to threshold-specific Top-1 river calendar",
+  "exact_duplicate_handling": "drop before same-day averaging",
+  "ranking": [
+    "maximum unique observation dates",
+    "minimum distance_prior_bank_m",
+    "deterministic Reach/Node ID tie-break"
+  ]
+}

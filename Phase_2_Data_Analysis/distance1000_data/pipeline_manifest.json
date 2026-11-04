@@ -1,0 +1,69 @@
+{
+  "distance_m": 1000,
+  "distance_column": "distance_prior_bank_m",
+  "monthly_input": "Phase_1_Data_Preprocessing/distance1000/6matched_results_monthly.txt",
+  "daily_input": "Phase_1_Data_Preprocessing/distance1000/5matched_results_daily.txt",
+  "distance_robustness_candidate_parent": "Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt",
+  "distance_robustness_cache": "Phase_2_Data_Analysis/shared_cache/distance_robustness_monthly_strict.parquet",
+  "distance_robustness_method": "threshold_then_rerank_top1",
+  "harmonic_eligibility": {
+    "minimum_pairwise_finite_observations": 18,
+    "minimum_elapsed_span_years": 1.5,
+    "model_parameters": 6,
+    "full_column_rank_required": true,
+    "maximum_condition_number": 10000.0,
+    "accepted_record_policy": "use all pairwise-finite observations; do not truncate"
+  },
+  "missing_depth_policy": "complete_cases",
+  "distance_robustness_series_sources": {
+    "500": "Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+    "1000": "Phase_1_Data_Preprocessing/distance1000/3results_all_country_nodeid_distance1000_withwidth50_pre_et.txt",
+    "2000": "Phase_1_Data_Preprocessing/distance3000/3results_all_country_nodeid_distance3000_withwidth50_pre_et.txt",
+    "5000": "Phase_1_Data_Preprocessing/distance5000/3results_all_country_nodeid_distance5000_withwidth50_pre_et.txt"
+  },
+  "elapsed_seconds": 1162.379,
+  "products": {
+    "08_event_covariates_all_sites.parquet": {
+      "size_bytes": 347882
+    },
+    "08_event_metrics_all_sites.parquet": {
+      "size_bytes": 253320
+    },
+    "08_global_coupling_metrics.parquet": {
+      "size_bytes": 469634
+    },
+    "08_holdout.json": {
+      "size_bytes": 241
+    },
+    "08_main_numbers.yml": {
+      "size_bytes": 30062
+    },
+    "08_mechanism.parquet": {
+      "size_bytes": 552040
+    },
+    "08_mechanism_summary.json": {
+      "size_bytes": 12021
+    },
+    "08_reach_at_uncertainty.parquet": {
+      "size_bytes": 74984
+    },
+    "08_robustness.json": {
+      "size_bytes": 29109
+    },
+    "08_summary.json": {
+      "size_bytes": 7761
+    },
+    "12_fig2_example_series.parquet": {
+      "size_bytes": 26153
+    },
+    "12_tf_comparison.json": {
+      "size_bytes": 11086
+    },
+    "13_tf_lowpass_uncertainty.json": {
+      "size_bytes": 7659
+    },
+    "13_tf_lowpass_uncertainty.parquet": {
+      "size_bytes": 79005
+    }
+  }
+}

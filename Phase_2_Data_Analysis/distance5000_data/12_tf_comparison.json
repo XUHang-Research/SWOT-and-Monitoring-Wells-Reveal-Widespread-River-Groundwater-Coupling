@@ -1,0 +1,390 @@
+{
+  "provenance": {
+    "generated_by": "07_tf_comparison.py",
+    "tf_definition": "TF_f = (A_gw,f / A_riv,f)^2, the energy-ratio analogue of Clyne & Sawyer 2022 Eq.1 (ESD_gw/ESD_sw)",
+    "bands": "annual f=1/yr and semiannual f=2/yr; the only bands SWOT cadence resolves",
+    "interval_convention": "[lo95, value, hi95], reach-level bootstrap n=10000",
+    "harmonic_eligibility": {
+      "minimum_pairwise_finite_observations": 18,
+      "minimum_elapsed_span_years": 1.5,
+      "model_parameters": 6,
+      "full_column_rank_required": true,
+      "maximum_condition_number": 10000.0,
+      "accepted_record_policy": "use all pairwise-finite observations; do not truncate"
+    },
+    "reproduction": {
+      "max_abs_dev_annual_gain": 0.0,
+      "max_abs_dev_TF1_vs_A_squared": 2.842170943040401e-14,
+      "max_relative_dev_TF1_vs_A_squared": 1.4671578102906268e-16,
+      "tf_allclose_atol": 1e-06,
+      "tf_allclose_rtol": 1e-10
+    },
+    "population_contract": {
+      "distance_m": 5000,
+      "expected": {
+        "daily_event_full": {
+          "n_site": 4037,
+          "n_reach": 1162
+        },
+        "A2_full_monthly_TF": {
+          "n_site": 6064,
+          "n_reach": 1041
+        },
+        "A1_monthly_TF_x_daily_event": {
+          "n_site": 3619,
+          "n_reach": 956
+        }
+      },
+      "observed": {
+        "daily_event_full": {
+          "n_site": 4037,
+          "n_reach": 1162
+        },
+        "A1_monthly_TF_x_daily_event": {
+          "n_site": 3619,
+          "n_reach": 956
+        },
+        "A2_full_monthly_TF": {
+          "n_site": 6064,
+          "n_reach": 1041
+        }
+      }
+    },
+    "denominator_policy": "A1 alone uses the finite monthly TF1 x finite independent daily event_r site-level intersection before Reach medians; A2 uses the full harmonic-eligible TF population independently of event_r"
+  },
+  "denominators": {
+    "A1_common_site": {
+      "definition": "finite monthly TF1 x finite independent daily event_r at site level, with identical reach_id required, then Reach median",
+      "monthly_source_table": "08_global_coupling_metrics.parquet",
+      "daily_source_table": "08_event_metrics_all_sites.parquet",
+      "intersection_keys": [
+        "site_no",
+        "reach_id"
+      ],
+      "reach_id_integrity_check": "reach_id must agree before the (site_no, reach_id) merge",
+      "site_filter": "finite TF1 and finite event_r",
+      "reach_aggregation": "median after site-level intersection",
+      "n_site": 3619,
+      "n_reach": 956
+    },
+    "A2_full_TF": {
+      "definition": "all harmonic-eligible TF sites, then Reach median; event_r not required",
+      "monthly_source_table": "08_global_coupling_metrics.parquet",
+      "n_site": 6064,
+      "n_reach": 1041
+    }
+  },
+  "n_reach_with_TF": 1041,
+  "A1_agreement": {
+    "n_site": 3619,
+    "n_reach": 956,
+    "denominator": "finite monthly TF1 x finite independent daily event_r sites, with identical reach_id required, followed by Reach medians",
+    "note": "TF bands are OUR operationalisation of Clyne's qualitative 'near 1' / 'approaching 0 or infinity'; each TF band is also given as its amplitude-ratio equivalent (sqrt of the TF bounds)",
+    "TF_band_0.500_2.000": {
+      "amplitude_ratio_equivalent": [
+        0.7071067811865476,
+        1.4142135623730951
+      ],
+      "tf_connected_frac": [
+        0.21548117154811716,
+        0.24267782426778242,
+        0.2698744769874477
+      ],
+      "r_ge0p3_frac": [
+        0.3702928870292887,
+        0.401673640167364,
+        0.4330543933054393
+      ],
+      "agreement": [
+        0.5836820083682008,
+        0.6150627615062761,
+        0.645397489539749
+      ],
+      "kappa": [
+        0.08266944306165451,
+        0.143435917413323,
+        0.2041947700949829
+      ],
+      "both": [
+        0.1087866108786611,
+        0.1297071129707113,
+        0.151673640167364
+      ],
+      "tf_only": [
+        0.09309623430962342,
+        0.11297071129707113,
+        0.13389121338912133
+      ],
+      "r_only": [
+        0.24372384937238495,
+        0.2719665271966527,
+        0.301255230125523
+      ],
+      "neither": [
+        0.45292887029288703,
+        0.48535564853556484,
+        0.5177824267782427
+      ],
+      "median_event_r_where_TF_in_band_but_r_below_0p3": 0.04543897495166191,
+      "median_TF1_where_r_ge_0p3_but_TF_outside_band": 0.3062930670833536
+    },
+    "TF_band_0.333_3.000": {
+      "amplitude_ratio_equivalent": [
+        0.5773502691896257,
+        1.7320508075688772
+      ],
+      "tf_connected_frac": [
+        0.32112970711297073,
+        0.3514644351464435,
+        0.3817991631799163
+      ],
+      "r_ge0p3_frac": [
+        0.3702928870292887,
+        0.401673640167364,
+        0.4330543933054393
+      ],
+      "agreement": [
+        0.5679916317991632,
+        0.5983263598326359,
+        0.6297071129707112
+      ],
+      "kappa": [
+        0.08467509789512646,
+        0.14680946006247195,
+        0.2103878082301986
+      ],
+      "both": [
+        0.151673640167364,
+        0.17573221757322174,
+        0.1997907949790795
+      ],
+      "tf_only": [
+        0.151673640167364,
+        0.17573221757322174,
+        0.1997907949790795
+      ],
+      "r_only": [
+        0.1997907949790795,
+        0.22594142259414227,
+        0.25313807531380755
+      ],
+      "neither": [
+        0.3922594142259414,
+        0.4225941422594142,
+        0.45397489539748953
+      ],
+      "median_event_r_where_TF_in_band_but_r_below_0p3": 0.056477873220648456,
+      "median_TF1_where_r_ge_0p3_but_TF_outside_band": 0.21902727125784888
+    },
+    "TF_band_0.250_4.000": {
+      "amplitude_ratio_equivalent": [
+        0.5,
+        2.0
+      ],
+      "tf_connected_frac": [
+        0.39748953974895396,
+        0.4299163179916318,
+        0.46234309623430964
+      ],
+      "r_ge0p3_frac": [
+        0.3713389121338912,
+        0.401673640167364,
+        0.4320083682008368
+      ],
+      "agreement": [
+        0.5585774058577406,
+        0.5889121338912134,
+        0.6202928870292888
+      ],
+      "kappa": [
+        0.09238182819913515,
+        0.15451918662742042,
+        0.21866173456723645
+      ],
+      "both": [
+        0.18514644351464435,
+        0.2102510460251046,
+        0.23640167364016737
+      ],
+      "tf_only": [
+        0.19351464435146443,
+        0.2196652719665272,
+        0.24686192468619247
+      ],
+      "r_only": [
+        0.16631799163179917,
+        0.19142259414225943,
+        0.21652719665271966
+      ],
+      "neither": [
+        0.348326359832636,
+        0.3786610878661088,
+        0.4100418410041841
+      ],
+      "median_event_r_where_TF_in_band_but_r_below_0p3": 0.054985239663126,
+      "median_TF1_where_r_ge_0p3_but_TF_outside_band": 0.19193979144225848
+    }
+  },
+  "A1_continuous": {
+    "spearman_log10TF_annual_vs_covariability": {
+      "rho": -0.010618875897187694,
+      "p": 0.7429817066364585,
+      "n": 956
+    }
+  },
+  "A2_lowpass": {
+    "expectation": "low-pass filtering predicts TF_semiannual < TF_annual; Clyne & Sawyer (2022) reported this was 'not consistently evident' in their transfer functions with n=17 sites",
+    "interpretation_guide": "a fraction whose CI includes 0.5 means no systematic low-pass decline",
+    "denominator": "full harmonic-eligible TF site population; event_r is not required",
+    "n_site": 6064,
+    "n_reach": 1041,
+    "ALL": {
+      "n_reach": 1041,
+      "frac_TF2_lt_TF1": [
+        0.7262247838616714,
+        0.7521613832853026,
+        0.7780979827089337
+      ],
+      "median_TF_annual": [
+        0.5931336163059648,
+        0.7087814687824252,
+        0.8378779912856861
+      ],
+      "median_TF_semiannual": [
+        0.20655340854090581,
+        0.2450408220349155,
+        0.27765432938186063
+      ]
+    },
+    "DEV": {
+      "n_reach": 463,
+      "frac_TF2_lt_TF1": [
+        0.7537796976241901,
+        0.7926565874730022,
+        0.8293736501079914
+      ],
+      "median_TF_annual": [
+        0.4363346159834044,
+        0.5882099868715739,
+        0.7649383227407505
+      ],
+      "median_TF_semiannual": [
+        0.13555579958361236,
+        0.19067108901865923,
+        0.25358474460971536
+      ]
+    },
+    "HOLDOUT": {
+      "n_reach": 578,
+      "frac_TF2_lt_TF1": [
+        0.6833910034602076,
+        0.7197231833910035,
+        0.7560553633217993
+      ],
+      "median_TF_annual": [
+        0.6572411639093091,
+        0.8204273187531734,
+        0.9335088354701749
+      ],
+      "median_TF_semiannual": [
+        0.2285993136913181,
+        0.2916983445507376,
+        0.4061702344992091
+      ]
+    },
+    "frequency_response": {
+      "n_reach": 1041,
+      "ratio_definition": "semiannual amplitude / annual amplitude; site ratios aggregated to Reach medians",
+      "median_well_A2_over_A1": [
+        0.3184879715291051,
+        0.33317373683645735,
+        0.3511592936259072
+      ],
+      "median_river_A2_over_A1": [
+        0.5961788193574006,
+        0.6285674733352247,
+        0.6645309747812139
+      ],
+      "median_paired_well_minus_river": [
+        -0.28500617353922264,
+        -0.23906653446519208,
+        -0.21407899670358566
+      ],
+      "fraction_well_ratio_lt_river_ratio": [
+        0.7262247838616714,
+        0.7521613832853026,
+        0.7790585975024016
+      ],
+      "paired_wilcoxon_well_lt_river": {
+        "statistic": 94891.0,
+        "p_value": 4.551706483322134e-74
+      }
+    },
+    "noise_robustness": {
+      "noise_definition": "per-Reach sub-seasonal river-WSE residual variability (legacy column sigma_swot_emp)",
+      "noise_tertiles": [
+        {
+          "tertile": "low",
+          "n_reach": 347,
+          "sigma_swot_emp_range_m": [
+            0.03151655084692086,
+            0.2674631169603859
+          ],
+          "frac_TF2_lt_TF1": [
+            0.6743515850144092,
+            0.723342939481268,
+            0.7694524495677233
+          ]
+        },
+        {
+          "tertile": "middle",
+          "n_reach": 347,
+          "sigma_swot_emp_range_m": [
+            0.2674945524186102,
+            0.524997606346522
+          ],
+          "frac_TF2_lt_TF1": [
+            0.6714697406340058,
+            0.7204610951008645,
+            0.7665706051873199
+          ]
+        },
+        {
+          "tertile": "high",
+          "n_reach": 347,
+          "sigma_swot_emp_range_m": [
+            0.5256798106148268,
+            34.31379112273717
+          ],
+          "frac_TF2_lt_TF1": [
+            0.7723342939481268,
+            0.8126801152737753,
+            0.8530259365994236
+          ]
+        }
+      ],
+      "river_signal_to_noise": {
+        "n_reach": 1041,
+        "median_annual": [
+          0.8986628790733072,
+          0.9580156557215532,
+          1.0483480102781437
+        ],
+        "median_semiannual": [
+          0.591081542479889,
+          0.6134837438861641,
+          0.6435627963035292
+        ]
+      },
+      "river_snr_gt_2_both_bands": {
+        "threshold": 2.0,
+        "n_reach": 34,
+        "frac_TF2_lt_TF1": [
+          0.6176470588235294,
+          0.7647058823529411,
+          0.8823529411764706
+        ]
+      }
+    }
+  }
+}

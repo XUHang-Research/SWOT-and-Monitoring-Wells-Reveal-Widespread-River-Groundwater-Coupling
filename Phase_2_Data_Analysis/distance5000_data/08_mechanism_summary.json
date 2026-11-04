@@ -1,0 +1,479 @@
+{
+  "sample_definitions": {
+    "regional_event_r": "complete independent daily event-r population from 08_event_metrics_all_sites.parquet; median across eligible sites within Reach; cross-region tests retain countries with at least 15 eligible Reaches",
+    "regional_event_r_n_site": 4037,
+    "regional_event_r_n_reach_all": 1162,
+    "regional_event_r_n_reach_retained": 1145,
+    "mechanism_covariates": "complete independent daily event-r EVENT_COV population; all static descriptor correlations, within-region tests, LORO, and Australia mechanism comparisons are formed after Reach aggregation from this population, without monthly river-GW eligibility; depth-dependent tests use finite-depth sites before Reach aggregation",
+    "mechanism_covariates_n_site": 4037,
+    "mechanism_covariates_n_reach_all": 1162,
+    "mechanism_covariates_n_reach_retained": 1145,
+    "depth_missing_policy": "complete_cases",
+    "depth_complete_case_rule": "Filter finite site depth before Reach aggregation; response and predictors use those same wells. Main daily population is preserved.",
+    "depth_complete_case_n_site": 4037,
+    "depth_missing_site_ids": [],
+    "depth_complete_case_n_reach_all": 1162,
+    "depth_complete_case_n_reach_retained": 1145,
+    "descriptor_finite_reaches": {
+      "width": 1145,
+      "aridity": 1145,
+      "depth": 1145,
+      "phase_off": 1107,
+      "regime": 1145
+    }
+  },
+  "heterogeneity": {
+    "test": "Kruskal-Wallis across retained regions",
+    "statistic": 56.617073095873366,
+    "p_value": 2.1838477163676017e-10,
+    "n_regions": 7,
+    "n_reaches": 1145,
+    "sample": "complete independent daily event-r population"
+  },
+  "regional_effect_size": {
+    "n_regions": 7,
+    "n_reaches": 1145,
+    "kruskal_eta_squared_H": 0.049490448510378815,
+    "kruskal_eta_squared_H_definition": "H / (n - 1); rank-based effect size",
+    "raw_anova_eta_squared": 0.05295922509032116,
+    "raw_anova_eta_squared_definition": "SS_between / SS_total on reach-level event_r",
+    "label_permutation": {
+      "n_permutations": 10000,
+      "seed": 20260807,
+      "permutation_unit": "region labels across reaches; observed region sizes preserved",
+      "alternative": "one-sided: permuted effect >= observed effect",
+      "p_kruskal_eta_squared_H": 9.999000099990002e-05,
+      "p_raw_anova_eta_squared": 9.999000099990002e-05
+    }
+  },
+  "within_region_sign_tests": {
+    "width": {
+      "variable": "width",
+      "region_results": [
+        {
+          "region": "Australia",
+          "n": 87,
+          "rho": -0.15012393380476777,
+          "p_value": 0.16517081183414992,
+          "sign": -1
+        },
+        {
+          "region": "Canada",
+          "n": 75,
+          "rho": 0.21351351351351347,
+          "p_value": 0.06587162303825876,
+          "sign": 1
+        },
+        {
+          "region": "China",
+          "n": 142,
+          "rho": 0.0925143181661012,
+          "p_value": 0.27349842054744655,
+          "sign": 1
+        },
+        {
+          "region": "France",
+          "n": 251,
+          "rho": -0.030608233731739713,
+          "p_value": 0.6293668522565119,
+          "sign": -1
+        },
+        {
+          "region": "Germany",
+          "n": 344,
+          "rho": 0.2156535299371807,
+          "p_value": 5.5123210721937757e-05,
+          "sign": 1
+        },
+        {
+          "region": "Sweden",
+          "n": 23,
+          "rho": -0.5454545454545454,
+          "p_value": 0.007103198332730007,
+          "sign": -1
+        },
+        {
+          "region": "USA",
+          "n": 223,
+          "rho": -0.08877820004501619,
+          "p_value": 0.18653457865448883,
+          "sign": -1
+        }
+      ],
+      "n_regions": 7,
+      "n_positive": 3,
+      "n_negative": 4,
+      "test": "exact two-sided binomial sign test against p=0.5; zero correlations excluded",
+      "p_value": 1.0
+    },
+    "depth": {
+      "variable": "depth",
+      "region_results": [
+        {
+          "region": "Australia",
+          "n": 87,
+          "rho": -0.34406211270686005,
+          "p_value": 0.001102357248403536,
+          "sign": -1
+        },
+        {
+          "region": "Canada",
+          "n": 75,
+          "rho": -0.2267709815078236,
+          "p_value": 0.05040879873540299,
+          "sign": -1
+        },
+        {
+          "region": "China",
+          "n": 142,
+          "rho": -0.07085422818116854,
+          "p_value": 0.40207752290878035,
+          "sign": -1
+        },
+        {
+          "region": "France",
+          "n": 251,
+          "rho": -0.158247770821476,
+          "p_value": 0.012058069739975886,
+          "sign": -1
+        },
+        {
+          "region": "Germany",
+          "n": 344,
+          "rho": -0.1708838034708322,
+          "p_value": 0.001466068110408195,
+          "sign": -1
+        },
+        {
+          "region": "Sweden",
+          "n": 23,
+          "rho": -0.291501976284585,
+          "p_value": 0.1771570817691435,
+          "sign": -1
+        },
+        {
+          "region": "USA",
+          "n": 223,
+          "rho": -0.17426459130495006,
+          "p_value": 0.009115708395086712,
+          "sign": -1
+        }
+      ],
+      "n_regions": 7,
+      "n_positive": 0,
+      "n_negative": 7,
+      "test": "exact two-sided binomial sign test against p=0.5; zero correlations excluded",
+      "p_value": 0.015625
+    }
+  },
+  "region_level_table": [
+    {
+      "region": "Australia",
+      "n": 87,
+      "event_r": 0.03950160882667178,
+      "aridity": 0.9377474588360253,
+      "depth": 11.5986,
+      "phase_off": 2.599431360438313,
+      "regime": 1.196636737470247,
+      "width": 57.40495475
+    },
+    {
+      "region": "Canada",
+      "n": 75,
+      "event_r": 0.27895218831450364,
+      "aridity": 1.8490796175812012,
+      "depth": 5.716096290322582,
+      "phase_off": 3.4205387881598304,
+      "regime": 2.0349686003092864,
+      "width": 118.29893
+    },
+    {
+      "region": "China",
+      "n": 142,
+      "event_r": 0.09550512726606339,
+      "aridity": 1.2979107513562917,
+      "depth": 5.391097943020057,
+      "phase_off": 1.5790078368895877,
+      "regime": 0.9690962880985066,
+      "width": 185.6651305
+    },
+    {
+      "region": "France",
+      "n": 251,
+      "event_r": 0.19358250642069014,
+      "aridity": 1.2862224159147149,
+      "depth": 4.820166666666667,
+      "phase_off": 1.5376158992528848,
+      "regime": 0.9756717645325346,
+      "width": 98.54580200000001
+    },
+    {
+      "region": "Germany",
+      "n": 344,
+      "event_r": 0.24840395633694226,
+      "aridity": 1.3923122145797389,
+      "depth": 3.2462426075268853,
+      "phase_off": 1.7920873264303214,
+      "regime": 0.7010504211456481,
+      "width": 131.245923
+    },
+    {
+      "region": "Sweden",
+      "n": 23,
+      "event_r": 0.22075726237791488,
+      "aridity": 2.0740659521641676,
+      "depth": 2.2469630952380952,
+      "phase_off": 2.82149673284995,
+      "regime": 2.3734276566365238,
+      "width": 101.470394
+    },
+    {
+      "region": "USA",
+      "n": 223,
+      "event_r": 0.2177679946743068,
+      "aridity": 1.2101790549200295,
+      "depth": 7.905233806451613,
+      "phase_off": 2.5647403523778176,
+      "regime": 1.3474605981851364,
+      "width": 124.028539
+    }
+  ],
+  "region_level_mechanism_table": [
+    {
+      "region": "Australia",
+      "n": 87,
+      "event_r": 0.03950160882667178,
+      "aridity": 0.9377474588360253,
+      "depth": 11.5986,
+      "phase_off": 2.599431360438313,
+      "regime": 1.196636737470247,
+      "width": 57.40495475
+    },
+    {
+      "region": "Canada",
+      "n": 75,
+      "event_r": 0.27895218831450364,
+      "aridity": 1.8490796175812012,
+      "depth": 5.716096290322582,
+      "phase_off": 3.4205387881598304,
+      "regime": 2.0349686003092864,
+      "width": 118.29893
+    },
+    {
+      "region": "China",
+      "n": 142,
+      "event_r": 0.09550512726606339,
+      "aridity": 1.2979107513562917,
+      "depth": 5.391097943020057,
+      "phase_off": 1.5790078368895877,
+      "regime": 0.9690962880985066,
+      "width": 185.6651305
+    },
+    {
+      "region": "France",
+      "n": 251,
+      "event_r": 0.19358250642069014,
+      "aridity": 1.2862224159147149,
+      "depth": 4.820166666666667,
+      "phase_off": 1.5376158992528848,
+      "regime": 0.9756717645325346,
+      "width": 98.54580200000001
+    },
+    {
+      "region": "Germany",
+      "n": 344,
+      "event_r": 0.24840395633694226,
+      "aridity": 1.3923122145797389,
+      "depth": 3.2462426075268853,
+      "phase_off": 1.7920873264303214,
+      "regime": 0.7010504211456481,
+      "width": 131.245923
+    },
+    {
+      "region": "Sweden",
+      "n": 23,
+      "event_r": 0.22075726237791488,
+      "aridity": 2.0740659521641676,
+      "depth": 2.2469630952380952,
+      "phase_off": 2.82149673284995,
+      "regime": 2.3734276566365238,
+      "width": 101.470394
+    },
+    {
+      "region": "USA",
+      "n": 223,
+      "event_r": 0.2177679946743068,
+      "aridity": 1.2101790549200295,
+      "depth": 7.905233806451613,
+      "phase_off": 2.5647403523778176,
+      "regime": 1.3474605981851364,
+      "width": 124.028539
+    }
+  ],
+  "region_level_depth_complete_case_table": [
+    {
+      "region": "Australia",
+      "n": 87,
+      "event_r": 0.03950160882667178,
+      "depth": 11.5986
+    },
+    {
+      "region": "Canada",
+      "n": 75,
+      "event_r": 0.27895218831450364,
+      "depth": 5.716096290322582
+    },
+    {
+      "region": "China",
+      "n": 142,
+      "event_r": 0.09550512726606339,
+      "depth": 5.391097943020057
+    },
+    {
+      "region": "France",
+      "n": 251,
+      "event_r": 0.19358250642069014,
+      "depth": 4.820166666666667
+    },
+    {
+      "region": "Germany",
+      "n": 344,
+      "event_r": 0.24840395633694226,
+      "depth": 3.2462426075268853
+    },
+    {
+      "region": "Sweden",
+      "n": 23,
+      "event_r": 0.22075726237791488,
+      "depth": 2.2469630952380952
+    },
+    {
+      "region": "USA",
+      "n": 223,
+      "event_r": 0.2177679946743068,
+      "depth": 7.905233806451613
+    }
+  ],
+  "region_level_spearman_vs_eventr": {
+    "aridity": [
+      0.7500000000000002,
+      0.0521814004570578
+    ],
+    "depth": [
+      -0.42857142857142866,
+      0.3373683110858243
+    ],
+    "phase_off": [
+      0.4642857142857144,
+      0.29393410760025196
+    ],
+    "regime": [
+      0.28571428571428575,
+      0.5345092286010406
+    ],
+    "width": [
+      0.28571428571428575,
+      0.5345092286010406
+    ]
+  },
+  "reach_level_spearman_vs_eventr": {
+    "aridity": [
+      0.10990594279153523,
+      0.00019437905741728542
+    ],
+    "depth": [
+      -0.21367714112175576,
+      2.731153232944193e-13
+    ],
+    "phase_off": [
+      -0.1428251386332222,
+      1.8319215775713049e-06
+    ],
+    "regime": [
+      0.12617406142635343,
+      1.852888915919545e-05
+    ],
+    "width": [
+      0.05621008886629957,
+      0.05724251632172678
+    ]
+  },
+  "leave_one_region_out": {
+    "aggregation": "regional medians for training descriptors, training target, test descriptors, and observed target",
+    "predictions": [
+      {
+        "region": "France",
+        "obs": 0.19358250642069014,
+        "pred": 0.1587655288340345,
+        "n": 251
+      },
+      {
+        "region": "Germany",
+        "obs": 0.24840395633694226,
+        "pred": 0.17975503356568895,
+        "n": 344
+      },
+      {
+        "region": "Sweden",
+        "obs": 0.22075726237791488,
+        "pred": 0.447742889740069,
+        "n": 23
+      },
+      {
+        "region": "China",
+        "obs": 0.09550512726606339,
+        "pred": 0.2057058555779742,
+        "n": 142
+      },
+      {
+        "region": "Australia",
+        "obs": 0.03950160882667178,
+        "pred": 0.19753496566992212,
+        "n": 87
+      },
+      {
+        "region": "Canada",
+        "obs": 0.27895218831450364,
+        "pred": 0.07739770729079479,
+        "n": 75
+      },
+      {
+        "region": "USA",
+        "obs": 0.2177679946743068,
+        "pred": 0.07860223451567355,
+        "n": 223
+      }
+    ],
+    "obs_vs_pred_spearman": [
+      -0.42857142857142866,
+      0.3373683110858243
+    ],
+    "n_regions": 7
+  },
+  "australia": {
+    "n": 87,
+    "event_r": 0.03950160882667178,
+    "river_clocked": 0.21839080459770116,
+    "aridity": 0.9377474588360253,
+    "depth_m": 11.5986,
+    "regime": 1.196636737470247,
+    "phase_off_mo": 2.599431360438313,
+    "vs_rest": {
+      "event_r": 0.19647458597356537,
+      "aridity": 1.332342478990645,
+      "depth_m": 4.623888064516127,
+      "regime": 1.0029700084838349
+    }
+  },
+  "australia_event_r_full_daily": {
+    "n": 87,
+    "event_r": 0.03950160882667178,
+    "river_clocked": 0.21839080459770116,
+    "vs_rest": {
+      "n": 1075,
+      "event_r": 0.19619321794545652,
+      "river_clocked": 0.39813953488372095
+    }
+  },
+  "caveats": "regional event-r and mechanism analyses retain 7 regions from the same complete daily event-r mother population; depth-dependent tests use the explicitly reported finite-depth site subset; phase-offset correlations use their explicitly reported finite-Reach subset because some sites lack monthly harmonic support; reach-level event_r is noisy over a ~3-yr record; region=country bundles climate+geology+anthropogenic"
+}

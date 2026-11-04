@@ -1,0 +1,10 @@
+{
+  "table": {
+    "path": "distance_robustness_monthly_strict.parquet",
+    "sha256": "e20aaf39687900e44d2e7b7047a6a5ca41a1c862ba74d66aa995a9ca3227ce60"
+  },
+  "metadata": {
+    "path": "distance_robustness_monthly_strict.parquet.json",
+    "sha256": "d089041b3015c8b709bdfbd9d49022d583d36f747f935d85fb20670b90e37852"
+  }
+}

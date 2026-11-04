@@ -1,0 +1,171 @@
+{
+  "scope": "global SWOT x in-situ well, 2023-2025, datum-free relative metrics, <=5km by distance_prior_bank_m, reach-level",
+  "harmonic_eligibility": {
+    "minimum_pairwise_finite_observations": 18,
+    "minimum_elapsed_span_years": 1.5,
+    "model_parameters": 6,
+    "full_column_rank_required": true,
+    "maximum_condition_number": 10000.0,
+    "accepted_record_policy": "use all pairwise-finite observations; do not truncate"
+  },
+  "distance_definition": {
+    "column": "distance_prior_bank_m",
+    "maximum_m": 5000.0
+  },
+  "aridity_definition": {
+    "metric": "sum(precipitation_mm) / sum(abs(evapotranspiration_mm))",
+    "temporal_window": "fixed 2023-01 through 2025-12 natural months",
+    "months_per_site": 36,
+    "computed_before_water_level_pairwise_screen": true,
+    "climate_month_completeness_required": true
+  },
+  "dev_countries": [
+    "China",
+    "Germany"
+  ],
+  "sigma_swot": {
+    "n_reach": 3525,
+    "median_m": 0.10132,
+    "iqr_fold": 1.1763476807354785,
+    "maxmin_fold": 3.0415
+  },
+  "ALL": {
+    "n_reach": 1041,
+    "amplified_or_lead_frac": 0.5465898174831892,
+    "seasonal_r_median": 0.3179359590528237,
+    "seasonal_r_frac_gt0p5": 0.3285302593659942,
+    "deseason_r_median": 0.2761114568212877,
+    "deseason_r_frac_ge0p3": 0.48222862632084534,
+    "phase_concentration_r": 0.4348303443186897,
+    "reach_phase_concentration_R_median": 0.9989855647146626,
+    "uniq_river_median": 0.1392518375458227,
+    "uniq_rech_median": 0.05372167046690435,
+    "A_vs_aridity_spearman": {
+      "rho": 0.12439052221582765,
+      "p_value": 5.7164731391370784e-05,
+      "n_reach": 1041
+    },
+    "rech_minus_river_uniq_CI": [
+      -0.069823607188224,
+      -0.04360842978351176
+    ]
+  },
+  "DEV": {
+    "n_reach": 463,
+    "amplified_or_lead_frac": 0.49676025917926564,
+    "seasonal_r_median": 0.2774697888030474,
+    "seasonal_r_frac_gt0p5": 0.3002159827213823,
+    "deseason_r_median": 0.3009140043984342,
+    "deseason_r_frac_ge0p3": 0.5010799136069114,
+    "phase_concentration_r": 0.4081981201649561,
+    "reach_phase_concentration_R_median": 0.9147352661699428,
+    "uniq_river_median": 0.09601392334882797,
+    "uniq_rech_median": 0.05659916400730025,
+    "A_vs_aridity_spearman": {
+      "rho": 0.1758346360253942,
+      "p_value": 0.0001429817174034945,
+      "n_reach": 463
+    },
+    "rech_minus_river_uniq_CI": [
+      -0.041341068262090164,
+      -0.01776161596042236
+    ]
+  },
+  "HOLDOUT": {
+    "n_reach": 578,
+    "amplified_or_lead_frac": 0.5865051903114187,
+    "seasonal_r_median": 0.33999759901521215,
+    "seasonal_r_frac_gt0p5": 0.35121107266435986,
+    "deseason_r_median": 0.2549659805288467,
+    "deseason_r_frac_ge0p3": 0.4671280276816609,
+    "phase_concentration_r": 0.47829185981591493,
+    "reach_phase_concentration_R_median": 1.0,
+    "uniq_river_median": 0.17932823468876827,
+    "uniq_rech_median": 0.04834890840866543,
+    "A_vs_aridity_spearman": {
+      "rho": 0.10115711328437473,
+      "p_value": 0.014975922671236064,
+      "n_reach": 578
+    },
+    "rech_minus_river_uniq_CI": [
+      -0.12044185876367064,
+      -0.06812354902803519
+    ]
+  },
+  "wse_residual_variability": {
+    "internal_column": "sigma_swot_emp",
+    "definition": "median across valid Nodes of 1.4826 x MAD of Node-level WSE residuals after annual+semiannual harmonic removal",
+    "interpretation": "sub-seasonal hydrologic variability plus measurement error; not a pure SWOT measurement-noise estimate; Node-specific fitting removes longitudinal between-Node WSE offsets",
+    "n_reach": 3316,
+    "median_m": 0.3946357621500851,
+    "n_zero": 0,
+    "numerical_zero_threshold_m": 1e-09,
+    "iqr_fold": 3.3064274156616533,
+    "p5_p95_fold": 18.989943485602435,
+    "maxmin_fold": 1128.273367271089
+  },
+  "same_sample_correlation": {
+    "source_table": "08_event_metrics_all_sites.parquet",
+    "monthly_harmonic_eligibility_required": false,
+    "sample_definition": "complete independently daily-eligible site-Reach population with finite raw_r_same_sample, seasonal_harmonic_r_same_sample, and event_r; all three are calculated from exactly the same pairwise-finite daily dates at each site, then median-aggregated by Reach; monthly-harmonic eligibility is not imposed",
+    "minimum_paired_daily_observations": 24,
+    "metric_definitions": {
+      "raw_r_same_sample": "Pearson correlation of raw river stage and groundwater level on the shared daily dates",
+      "seasonal_harmonic_r_same_sample": "Pearson correlation of the fitted annual+semiannual periodic components on the shared daily dates; intercept and trend excluded",
+      "event_r": "Pearson correlation of residuals after removing intercept, trend, annual, and semiannual terms on the shared daily dates"
+    },
+    "difference_definitions": {
+      "difference_of_population_medians": "median over Reach values of the first metric minus the separate median over Reach values of event_r",
+      "median_paired_reach_difference": "median over Reaches of the within-Reach first-metric minus event_r difference",
+      "interpretation": "descriptive correlation contrasts, not an additive partition of variance attributable to seasonality"
+    },
+    "identifiability_sensitivity": {
+      "policy": "diagnostic only; neither threshold excludes the main analysis",
+      "population": "three-metric finite intersection within the complete independent daily population",
+      "annual_amplitude_threshold_m": 0.01,
+      "n_site_any_series_below_annual_amplitude_threshold": 32,
+      "periodic_sd_over_raw_sd_threshold": 0.1,
+      "n_site_any_series_below_periodic_sd_fraction_threshold": 25,
+      "n_site_evaluated": 4037
+    },
+    "ALL": {
+      "n_site": 4037,
+      "n_reach": 1162,
+      "raw_r_same_sample_median": 0.26035905601967185,
+      "seasonal_harmonic_r_same_sample_median": 0.47284484994735376,
+      "event_r_median": 0.1836053474344213,
+      "seasonal_harmonic_minus_event_difference_of_population_medians": 0.28923950251293246,
+      "seasonal_harmonic_minus_event_median_paired_reach_difference": 0.16038629131717302,
+      "raw_minus_event_difference_of_population_medians": 0.07675370858525055,
+      "raw_minus_event_median_paired_reach_difference": 0.04078623348428063,
+      "fraction_reaches_seasonal_harmonic_gt_event": 0.6351118760757315,
+      "fraction_reaches_raw_gt_event": 0.6049913941480206
+    },
+    "DEV": {
+      "n_site": 2889,
+      "n_reach": 486,
+      "raw_r_same_sample_median": 0.2392245157843414,
+      "seasonal_harmonic_r_same_sample_median": 0.37379884874958214,
+      "event_r_median": 0.18843609230846872,
+      "seasonal_harmonic_minus_event_difference_of_population_medians": 0.1853627564411134,
+      "seasonal_harmonic_minus_event_median_paired_reach_difference": 0.04251257232950126,
+      "raw_minus_event_difference_of_population_medians": 0.050788423475872674,
+      "raw_minus_event_median_paired_reach_difference": 0.014639677668931858,
+      "fraction_reaches_seasonal_harmonic_gt_event": 0.5411522633744856,
+      "fraction_reaches_raw_gt_event": 0.5617283950617284
+    },
+    "HOLDOUT": {
+      "n_site": 1148,
+      "n_reach": 676,
+      "raw_r_same_sample_median": 0.2820422076100346,
+      "seasonal_harmonic_r_same_sample_median": 0.5435535731861889,
+      "event_r_median": 0.17344371812540782,
+      "seasonal_harmonic_minus_event_difference_of_population_medians": 0.3701098550607811,
+      "seasonal_harmonic_minus_event_median_paired_reach_difference": 0.22718026613723258,
+      "raw_minus_event_difference_of_population_medians": 0.1085984894846268,
+      "raw_minus_event_median_paired_reach_difference": 0.057397620538248845,
+      "fraction_reaches_seasonal_harmonic_gt_event": 0.7026627218934911,
+      "fraction_reaches_raw_gt_event": 0.636094674556213
+    }
+  }
+}
