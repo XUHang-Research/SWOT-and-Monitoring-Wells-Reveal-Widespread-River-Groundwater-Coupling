@@ -1,0 +1,95 @@
+LICENSE
+
+Original software is licensed under the MIT License. Original research
+outputs and standalone documentation are licensed under CC BY 4.0, within
+the scopes defined below. Existing third-party licenses remain in effect.
+
+Project: SWOT–groundwater analysis workflow
+Copyright year: 2026
+Copyright holder: Hang Xu
+
+1. Original software — MIT License
+
+Scope: project-authored Python source files, executable code, and software
+configuration files, including requirements.txt and config.example.json.
+Third-party material identified below is excluded from this scope. Standalone
+README files, scientific tables and figure outputs are covered by Section 2.
+
+MIT License
+
+Copyright (c) 2026 Hang Xu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Official license text: https://opensource.org/license/mit
+
+2. Original research outputs and documentation — CC BY 4.0
+
+Scope: the project authors' original contributions to the distributed derived
+analysis tables, summary statistics, figures and standalone documentation.
+This scope includes the original content in the Phase 2 analysis products,
+the Phase 3 figure exports and statistics, and the README files. It excludes
+third-party material and rights in underlying source observations or databases.
+
+These contributions are licensed under the Creative Commons
+Attribution 4.0 International License (SPDX identifier: CC-BY-4.0).
+
+License: https://creativecommons.org/licenses/by/4.0/
+Full legal terms: https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+In summary, this license permits sharing and adaptation, including commercial
+reuse, subject to its terms. Users must provide appropriate attribution,
+retain the supplied notices, link to the license, and indicate modifications.
+The full legal terms govern; this summary does not replace them.
+
+For attribution, credit Hang Xu, identify the title of the released archive,
+and, when available, link to its Zenodo record. Citation of the associated
+paper is appreciated; it is not an additional license condition.
+
+3. Third-party materials and external inputs
+
+Scientific Colour Maps:
+  The bundled color tables in
+  Phase_3_Data_Visualization/01_Code/colormaps/
+  retain their existing MIT license and the copyright notice for Fabio Crameri.
+  See Phase_3_Data_Visualization/01_Code/colormaps/LICENSE.txt.
+
+Natural Earth:
+  The bundled basemap files in
+  Phase_3_Data_Visualization/02_Resources/natural_earth/
+  are public-domain materials. They are not relicensed under Section 2.
+  Credit: Made with Natural Earth.
+  Terms: https://www.naturalearthdata.com/about/terms-of-use/
+
+Source observations and databases:
+  This notice does not grant or change rights held by the providers of
+  groundwater observations, SWOT, SWORD, climate fields, DEM products, or
+  source-derived material. Applicable provider terms and attribution notices
+  continue to apply. Section 2 licenses only rights held by the project authors
+  in their original contributions; it does not replace upstream permissions.
+
+Dependencies and fonts:
+  Third-party software and fonts retain their respective licenses. Listing a
+  dependency or font in the documentation does not relicense or redistribute it.
+
+4. Zenodo license metadata
+
+Declare MIT and CC-BY-4.0 as the licenses for the respective content categories,
+and refer to this file for their scope and the third-party exclusions. Do not
+describe every file in the archive as being covered solely by CC BY 4.0 or MIT.
